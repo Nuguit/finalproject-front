@@ -1,6 +1,5 @@
 import { Flex, Text } from "@chakra-ui/react"
 import LoggedNavbar from "../../components/Navbar/LoggedNavBar/LoggedNavBar"
-import ProfileBanner from "../../components/ProfileBanner/ProfileBanner"
 import { useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import icono from "../../components/Navbar/MainNavbar/icono.png"

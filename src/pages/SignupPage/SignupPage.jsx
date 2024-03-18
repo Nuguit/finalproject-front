@@ -45,11 +45,11 @@ const SignupPage = () => {
 
 <Flex height={"50%"} width={"50%"}><img src={SignupPicture} ></img></Flex>
 
-    <FormSignupLayout >
+    <FormSignupLayout>
       
-      <Box >
+      <Box paddingLeft={"200px"}>
       <CustomForm
-        textAlign={"flex-end"}
+        
         marginBottom={"10px"}
         title={"Regístrate"}
         onChange={onChange}
@@ -59,7 +59,7 @@ const SignupPage = () => {
       </Box>
       
 
-     <SignupPageButton/>
+     <Box paddingLeft={"200px"}><SignupPageButton/></Box>
       
 
 

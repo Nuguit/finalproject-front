@@ -6,7 +6,6 @@ const FormSignupLayout = ({  children  }) => {
       <Flex minH={"1000px"} flexDir={"column"} >
         <Box
           w={"50%"}
-          
           paddingTop={"200px"}
           paddingRight={"500px"}
         >

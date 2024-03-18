@@ -10,7 +10,7 @@ const Input = ({ placeholder, onChange, ...props }) => {
       borderRadius={"20px"}
       backgroundColor={"#D9D9D9"}
       boxShadow={"none"}
-      _placeholder={{ color: "#ff4f5a" }}
+      _placeholder={{ color: "#767676" }}
       _focus={{ boxShadow: "black" }}
       placeholder={placeholder}
       {...props}

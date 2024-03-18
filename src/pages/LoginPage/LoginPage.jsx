@@ -34,7 +34,7 @@ const LoginPage = () => {
       options={["email", "password"]}
     />
   </FormLoginLayout>
-  <SignupPageButton />
+  <Flex position={"absolute"} paddingTop={"850px"} paddingLeft={"100px"}><SignupPageButton /></Flex>
 </Flex>
   )
 }
