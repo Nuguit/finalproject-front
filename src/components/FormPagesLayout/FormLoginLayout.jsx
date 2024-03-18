@@ -3,7 +3,7 @@ import LoginPicture from "../../pages/LoginPage/LoginPicture.jpg"
 import SignupPageButton from "../Buttons/SignupPage/SignupPageButton"
 
 
-const FormLoginLayout = ({  children,  }) => {
+const FormLoginLayout = ({  children  }) => {
   return (
     <Flex minH={"1000px"} maxWidth={"1400px"} display={"flex"}>
       <Box

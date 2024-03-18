@@ -3,7 +3,7 @@ import CustomForm from "../../components/CustomForm/CustomForm"
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import SignupPageButton from "../../components/Buttons/SignupPage/SignupPageButton"
-import { Flex } from "@chakra-ui/react"
+import { Flex , Box } from "@chakra-ui/react"
 
 const LoginPage = () => {
   const { login } = useContext(AuthContext)
@@ -25,18 +25,17 @@ const LoginPage = () => {
   }
 
   return (
-
-    <FormLoginLayout>
-      
-      <CustomForm
-        title={"Inicia sesión"}
-        onChange={onChange}
-        onSubmit={onSubmit}
-        options={["email", "password"]}
-      />
-      <Flex position={"absolute"} paddingTop={"400px"}><SignupPageButton /></Flex>
-    </FormLoginLayout>
-    
+    <Flex flexDirection="column" alignItems="left" >
+  <FormLoginLayout>
+    <CustomForm
+      title={"Inicia sesión"}
+      onChange={onChange}
+      onSubmit={onSubmit}
+      options={["email", "password"]}
+    />
+  </FormLoginLayout>
+  <SignupPageButton />
+</Flex>
   )
 }
 

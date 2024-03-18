@@ -47,7 +47,7 @@ const SignupPage = () => {
 
     <FormSignupLayout >
       
-      <Box  >
+      <Box >
       <CustomForm
         textAlign={"flex-end"}
         marginBottom={"10px"}
@@ -59,7 +59,7 @@ const SignupPage = () => {
       </Box>
       
 
-       <SignupPageButton /> 
+     <SignupPageButton/>
       
 
 

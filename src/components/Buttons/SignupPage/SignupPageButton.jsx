@@ -11,7 +11,7 @@ const SignupPageButton = () => {
       minH={"56px"}
       width={"400px"}
       fontSize={"20px"}
-      marginTop={"90px"}
+      marginTop={"30px"}
       textAlign={"center"}
       borderRadius={"20px"}
       backgroundColor={"#ff4f5a"}

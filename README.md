@@ -31,6 +31,6 @@ You will need to create a .env (or .env.local) file if you want to run this proj
 |            /profile                 |     Profile Page          |    ✅     |
 |            /contributions           |Personal Contributions Page|    ✅     |
 |            /safemap                 |     Safemap Page          |    ✅     |
-|          /safemap/:added            |    New Warning Added      |    ✅     |
+|          /safemap/added            |    New Warning Added      |    ✅     |
 
 
