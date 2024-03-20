@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-
+import icono from "../../components/Navbar/MainNavbar/icono.png"
 
 function MyMap() {
   const { isLoaded } = useJsApiLoader({
@@ -24,11 +24,12 @@ function MyMap() {
     }
   }, []);
 
-  const mapOptions = {
+    const mapOptions = {
     center: currentLocation,
     zoom: 15,
 
   };
+  
 
   
   return isLoaded ? (
@@ -40,7 +41,7 @@ function MyMap() {
         <div>Cargando ubicación...</div>
       ) : null}
         {currentLocation && (
-        <Marker position={currentLocation} /> )}
+        <Marker position={currentLocation} icon={icono}  /> )}
       
     </GoogleMap>
   ) : (
