@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import icono from "../../components/Navbar/MainNavbar/icono.png"
 
+
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 function MyMap() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyBTCcJOX5L4Bb-vtJTf8oax9q-U3UjYChk'
+    googleMapsApiKey: apiKey
   });
   
 
