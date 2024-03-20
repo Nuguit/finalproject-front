@@ -41,7 +41,8 @@ function MyMap() {
         <div>Cargando ubicación...</div>
       ) : null}
         {currentLocation && (
-        <Marker position={currentLocation} icon={icono}  /> )}
+        <Marker position={currentLocation} icon={icono} 
+           /> )}
       
     </GoogleMap>
   ) : (
