@@ -37,6 +37,7 @@ function MyMap() {
   
   return isLoaded ? (
     <GoogleMap
+    
       mapContainerStyle={{ width: '100%', height: '800px', border: '10px solid green' }}
       {...mapOptions}
     >

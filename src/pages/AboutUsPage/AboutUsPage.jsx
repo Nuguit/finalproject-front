@@ -26,7 +26,7 @@ Nuestro valor como sociedad se basa en la colaboración y apoyo, cimientos de <T
        <Flex><img src={AboutUsImage} ></img></Flex> 
         </Flex>
 
-<Text paddingTop={"10px"} fontSize={"30px"} fontWeight={"bold"} textAlign={"center"}>¿Quieres contarnos algo? Escríbenos a <Link to= "http://www.gmail.com">safewalk@safewalk.com</Link>.</Text>
+<Text paddingTop={"10px"} fontSize={"30px"} fontWeight={"bold"} textAlign={"center"}>¿Quieres contarnos algo? Escríbenos a <a href="mailto:safewalk@safewalk.com?Subject=Hola">safewalk@safewalk.com</a>.</Text>
 
 
 
