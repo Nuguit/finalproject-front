@@ -10,14 +10,14 @@ class SafeMapService extends AxiosConfig {
     return response.data
   }
 
-   //async createWarning(data) {
-    //data.location = {
-     // type: "Point",                      <--LOCATION O GOOGLE MAPS????
-      //coordinates: [12, -43],
-    //}
-    //const response = await this.axios.post("/safemap", data)
-    //return response.data
-  //}
+   async createWarning(data) {
+    data.location = {
+     type: "Point",                      
+    coordinates: [12, -43],
+    }
+    const response = await this.axios.post("/safemap", data)
+    return response.data
+  }
 
   
 }
