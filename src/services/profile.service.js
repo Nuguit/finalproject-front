@@ -19,7 +19,11 @@ class SafeMapService extends AxiosConfig {
     return response.data
   }
 
-  
+  async editProfile(id, data) {
+    const response = await this.axios.put(`/tuperfil/${id}`, data)
+    return response.data
+  }
+
 }
 
 export default new SafeMapService()

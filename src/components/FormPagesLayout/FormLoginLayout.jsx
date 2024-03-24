@@ -5,21 +5,15 @@ import SignupPageButton from "../Buttons/SignupPage/SignupPageButton"
 
 const FormLoginLayout = ({  children  }) => {
   return (
-    <Flex minH={"1000px"} maxWidth={"1400px"} display={"flex"}>
-      <Box
-        w={"50%"}
-        
-        
-      ></Box>
-       
-      
-      <Flex alignItems={"center"} paddingLeft={"100px"} w={"50%"} position={"relative"}>
+    <Flex minH={"100px"} maxWidth={"1400px"} display={"flex"} alignItems={"center"}>
+      <Box w={"50%"} position={"relative"} >
         {children}
-      </Flex>
-      <img src={LoginPicture} width={"100%"} height={"100%"}></img>
+      </Box>
+      <Box w={"50%"}>
+        <img src={LoginPicture} width={"100%"} height={"auto"}  />
+      </Box>
     </Flex>
-    
-  )
-}
+  );
+};
 
 export default FormLoginLayout

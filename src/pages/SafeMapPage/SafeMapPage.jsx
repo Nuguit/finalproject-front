@@ -20,7 +20,8 @@ const SafeMapPage = () => {
 
 
       <MyMap 
-      
+      markers= {[ 
+    {lat: 40.4165000, lng: -3.7025600}]}
       
       />
      

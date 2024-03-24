@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import SignupPicture from "./SignupPicture.jpg"
 import SignupPageButton from "../../components/Buttons/SignupPage/SignupPageButton"
 import { Box } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 
 const SignupPage = () => {
   const [userData, setUserData] = useState({
@@ -59,7 +60,7 @@ const SignupPage = () => {
       </Box>
       
 
-     <Box paddingLeft={"200px"}><SignupPageButton/></Box>
+     <Link to="/tuperfil"> <Box paddingLeft={"200px"}><SignupPageButton/></Box></Link>
       
 
 

@@ -51,7 +51,7 @@ const AppRoutes = () => {
           element: (
             <AuthMiddleware>
               <ProfilePage />  
-            </AuthMiddleware> //AQUÍ LA DEL PERFIL 
+            </AuthMiddleware>  
           ),
         },
         {

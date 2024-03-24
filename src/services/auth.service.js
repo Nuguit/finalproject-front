@@ -27,6 +27,9 @@ class AuthService extends AxiosConfig {
     )
     return response.data
   }
+
+  
+
 }
 
 const authService = new AuthService()

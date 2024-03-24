@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         setUser(loggedUser)
       }
     } catch (error) {
-      console.log("Error =>", error)
+      console.error("Error =>", error)
     } finally {
       setIsLoading(false)
     }
@@ -43,9 +43,9 @@ export const AuthProvider = ({ children }) => {
       const { token } = await authService.login(userData)
       setToken(token)
       await getUser()
-      navigate("/profile")
+      navigate("/tuperfil")
     } catch (error) {
-      console.log("EL ERROR", error)
+      console.error("ERROR", error)
     }
   }
 

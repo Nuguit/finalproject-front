@@ -2,8 +2,10 @@ import FormLoginLayout from "../../components/FormPagesLayout/FormLoginLayout"
 import CustomForm from "../../components/CustomForm/CustomForm"
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
-import SignupPageButton from "../../components/Buttons/SignupPage/SignupPageButton"
+import LoginPageButton from "../../components/Buttons/LoginPage/LoginPage"
 import { Flex , Box } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
+
 
 const LoginPage = () => {
   const { login } = useContext(AuthContext)
@@ -25,8 +27,8 @@ const LoginPage = () => {
   }
 
   return (
-    <Flex flexDirection="column" alignItems="left" >
-  <FormLoginLayout>
+    <Flex flexDirection="column" alignItems={"center"} >
+  <FormLoginLayout >
     <CustomForm
       title={"Inicia sesión"}
       onChange={onChange}
@@ -34,7 +36,13 @@ const LoginPage = () => {
       options={["email", "password"]}
     />
   </FormLoginLayout>
-  <Flex position={"absolute"} paddingTop={"850px"} paddingLeft={"100px"}><SignupPageButton /></Flex>
+  
+  
+     
+    <Link to= "/tuperfil"><LoginPageButton/></Link>
+
+   
+    
 </Flex>
   )
 }

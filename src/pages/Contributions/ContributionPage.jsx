@@ -6,6 +6,7 @@ import { Image , Text , Box } from '@chakra-ui/react'
 import CustomLink from '../../components/CustomLink/CustomLink'
 import { Link  } from 'react-router-dom'
 import ContributionsKittie from "./ContributionsKittie/ContributionsKittie.png"
+import ContributionsComponent from '../../components/Contributions/Contributions'
 
 
 
@@ -21,13 +22,7 @@ export const ContributionPage = () => {
             src={icono}
             alt='SafeWalk'></Image></CustomLink></Flex>
     
-    <Flex justifyContent={"center"} textAlign={"center"}><Text fontSize={"50px"}>Aquí están tus contribuciones:</Text></Flex>
-    <Box paddingTop={"150px"} paddingBottom={"150px"} fontSize={"50px"}  display={"flex"} justifyContent={"center"}>
-  
-    <Text>¡Vaya! Aún no hay nada por aquí. </Text>
-    <Link to="/safemap"><Text color="#ff4f5a">¿Quieres añadir tu primer aviso?</Text>
-  </Link>
-</Box>
+    <ContributionsComponent/>
 <Box paddingTop={"150px"} paddingBottom={"5px"} fontSize={"50px"}  display={"flex"} justifyContent={"center"}>
     <Text>
         ¡Gracias por formar parte de la comunidad SafeWalk! Tu ayuda es imprescindible ❤
