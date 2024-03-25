@@ -48,11 +48,11 @@ const AppRoutes = () => {
 
         {
           path: "/tuperfil",
-          element: (
-            <AuthMiddleware>
+          element: //(
+           // <AuthMiddleware>
               <ProfilePage />  
-            </AuthMiddleware>  
-          ),
+            //</AuthMiddleware>  
+          //),
         },
         {
           path: "/safemap",

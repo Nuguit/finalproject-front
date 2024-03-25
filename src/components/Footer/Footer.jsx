@@ -3,6 +3,7 @@ import CustomLink from "../CustomLink/CustomLink"
 import FbIcon from "../FbIcon/FbIcon.jsx"
 import InstagramIcon from "../InstagramIcon/InstagramIcon.jsx"
 import XIcon from "../XIcon/XIcon.jsx"
+import { Box } from "@chakra-ui/react"
 
 
 const Footer = () => {
@@ -10,17 +11,17 @@ const Footer = () => {
     {
       component: <FbIcon />,
       link: "http://facebook.es",
-      id: 1,
+      id: "fb",
     },
     {
       component: <InstagramIcon />,
       link: "http://instagram.es",
-      id: 2,
+      id: "ig",
     },
     {
       component: <XIcon />,
       link: "https://twitter.com/",
-      id: 3,
+      id: "xi",
     },
   ]
   return (
@@ -36,12 +37,12 @@ const Footer = () => {
       
     >
 
-{ICONS.map(({ component, link, id }) => {
+{ICONS.map(({ component, link, id}) => {
         return (
-          <Flex justifyContent={"left"} padding={"10px"}>
+          <Box key={id} justifyContent={"left"} padding={"10px"}>
           <CustomLink to={link} cursor={"pointer"} key={id}>
             {component}
-          </CustomLink></Flex>
+          </CustomLink></Box>
         )
       })}
 

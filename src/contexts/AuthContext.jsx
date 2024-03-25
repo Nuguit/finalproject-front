@@ -10,25 +10,30 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   const setToken = (token) => {
-    localStorage.setItem("token", token)
+    localStorage.setItem("token", token);
+    console.log("Token guardado correctamente:", token);
   }
+  
   const getToken = () => {
     return localStorage.getItem("token")
   }
 
   const getUser = async () => {
     try {
-      const token = getToken()
+      const token = getToken();
+      console.log("Token recuperado:", token); // Agregar console.log() aquí
       if (token) {
-        const loggedUser = await authService.getUser(token)
-        setUser(loggedUser)
+        const loggedUser = await authService.getUser(token);
+        setUser(loggedUser);
       }
     } catch (error) {
-      console.error("Error =>", error)
+      console.error("Error al recuperar el usuario:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
+  
+  
 
   const logout = (e) => {
     if (e) e.preventDefault()
@@ -38,16 +43,17 @@ export const AuthProvider = ({ children }) => {
   }
 
   const login = async (userData) => {
-    
     try {
-      const { token } = await authService.login(userData)
-      setToken(token)
-      await getUser()
-      navigate("/tuperfil")
+      const { token } = await authService.login(userData);
+      console.log("Token recibido en AuthContext:", token);
+      setToken(token);
+      await getUser();
+      navigate("/tuperfil");
     } catch (error) {
-      console.error("ERROR", error)
+      console.error("ERROR", error);
     }
-  }
+  };
+  
 
   useEffect(() => {
     getUser()
