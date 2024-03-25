@@ -49,9 +49,9 @@ const AppRoutes = () => {
         {
           path: "/tuperfil",
           element: //(
-           // <AuthMiddleware>
+           <AuthMiddleware>
               <ProfilePage />  
-            //</AuthMiddleware>  
+            </AuthMiddleware>  
           //),
         },
         {

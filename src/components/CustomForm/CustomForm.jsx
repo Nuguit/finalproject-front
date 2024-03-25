@@ -1,6 +1,7 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import React from "react"
 import Input from "../Input/Input"
+import LoginPageButton from "../Buttons/LoginPage/LoginPageButton"
 
 
 const CustomForm = ({
@@ -32,6 +33,8 @@ const CustomForm = ({
             )
           })}
         </Flex>
+
+        <button type="submit">LoginPageButton</button> 
         
       </form>
     </Flex>

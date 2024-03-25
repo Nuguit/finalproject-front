@@ -1,19 +1,14 @@
 import { Flex, Text } from "@chakra-ui/layout"
 import { useLocation } from "react-router-dom"
-import { useContext } from "react"
 import { Image } from '@chakra-ui/react'
-import { Link } from "react-router-dom"
 import icono from "./icono.png"
-import { AuthContext } from "../../../contexts/AuthContext"
 import CustomLink from "../../CustomLink/CustomLink"
-import AuthLink from "../../AuthLink/AuthLink"
 import NavigationLink from "../../NavigationLink/NavigationLink"
-import SignupPage from "../../../pages/SignupPage/SignupPage"
+
 
 
 
 const Navbar = () => {
-  const { user, logout } = useContext(AuthContext)
   const NAVIGATION_LINK = [
     {
       link: "/signup",
