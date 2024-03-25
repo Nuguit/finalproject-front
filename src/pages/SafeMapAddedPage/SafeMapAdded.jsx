@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 const SafeMapAdded = () => {
   return (
     <Flex flexDir={"column"} >
-        <LoggedNavbar />
+        
        <Box display={"flex"} width={"80%"}  height={"80%"} textAlign={"center"} backgroundColor={"blue"} paddingTop={"100px"} ><img src={SafeMapTitle}></img></Box>
 
         < Flex textAlign={"center"} justifyContent={"center"}>

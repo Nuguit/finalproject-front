@@ -13,8 +13,7 @@ import ContributionsComponent from '../../components/Contributions/Contributions
 export const ContributionPage = () => {
   return (
     <div>
-      <LoggedNavbar/>
-    <Flex justifyContent={"center"} paddingTop={"100px"}>        
+          <Flex justifyContent={"center"} paddingTop={"100px"}>        
         <CustomLink to="/">
           <Image
             borderRadius='full'

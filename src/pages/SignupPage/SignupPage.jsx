@@ -35,7 +35,7 @@ const SignupPage = () => {
         duration: 5000,
         isClosable: true,
       })
-      navigate("/login")
+      navigate("/safemap")
     } catch (error) {
       console.error("Error ==>", error)
     }

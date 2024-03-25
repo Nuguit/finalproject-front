@@ -14,7 +14,7 @@ const SafeMapPage = () => {
   
     return (
     <>
-      <LoggedNavbar />
+      
     <img src={SafeMapTitle}></img>
     <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"100px"}fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Bienvenid@ al SafeMap. Clica en la zona del mapa donde quieras introducir alguna información valiosa para hacer el camino de tod@s más seguro. </Text>
 

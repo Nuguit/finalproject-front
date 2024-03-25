@@ -3,7 +3,6 @@ import { AuthContext } from "../../contexts/AuthContext"
 import { Text, Box, Flex, Modal } from "@chakra-ui/react"
 import LoggedNavbar from "../../components/Navbar/LoggedNavBar/LoggedNavBar"
 import ProfilePagePicture from "./ProfilePagePicture.jpg"
-import Footer from "../../components/Footer/Footer"
 import PageWrapper from "../../components/PageWrapper/PageWrapper"
 import CustomForm from "../../components/CustomForm/CustomForm"
 import SafeMapService from "../../services/profile.service"
@@ -50,7 +49,6 @@ const PROFILE_OPTIONS = [
 
   return (
     <PageWrapper>
-      <LoggedNavbar />
       <Flex alignItems="center" justifyContent="center" flexDirection="column" marginTop="20px">
         <Box
           as="img"
@@ -99,7 +97,7 @@ const PROFILE_OPTIONS = [
 
         </Flex>
         
-      <Footer />
+      
     </PageWrapper>
   )
 }

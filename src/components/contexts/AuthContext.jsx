@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react"
-import authService from "../services/auth.service"
+import authService from "../../services/auth.service"
 import { useNavigate } from "react-router-dom"
 
 export const AuthContext = createContext()
@@ -21,7 +21,9 @@ export const AuthProvider = ({ children }) => {
       const token = getToken()
       if (token) {
         const loggedUser = await authService.getUser(token)
+        console.log("El mensaje que quiero", loggedUser)
         setUser(loggedUser)
+
       }
     } catch (error) {
       console.log("Error =>", error)

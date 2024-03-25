@@ -4,7 +4,7 @@ class AxiosConfig {
   constructor(path) {
     this.axios = axios.create(
       {
-        baseURL: `http://localhost:3001/api/${path}`
+        baseURL: `http://localhost:3000/api/${path}`
       }
     );
   }
