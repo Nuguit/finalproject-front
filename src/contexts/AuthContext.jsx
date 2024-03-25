@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
   const getUser = async () => {
     try {
       const token = getToken();
-      console.log("Token recuperado:", token); // Agregar console.log() aquí
+      console.log("Token recuperado:", token); 
       if (token) {
         const loggedUser = await authService.getUser(token);
         setUser(loggedUser);

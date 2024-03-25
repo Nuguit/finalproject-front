@@ -2,7 +2,6 @@ import FormLoginLayout from "../../components/FormPagesLayout/FormLoginLayout"
 import CustomForm from "../../components/CustomForm/CustomForm"
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
-import authService from "../../services/auth.service"
 import LoginPageButton from "../../components/Buttons/LoginPage/LoginPage"
 import { Flex , Box } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
@@ -23,7 +22,7 @@ const LoginPage = () => {
     e.preventDefault()
     try {
       const { token } = await login(userData)
-      console.log("Token recibido:", token); // Aquí agregamos el console.log()
+      console.log("Token recibido:", token); 
     } catch (error) {
       console.error("Error al iniciar sesión:", error)
     }

@@ -12,8 +12,6 @@ class AuthService extends AxiosConfig {
 
   async login(data) {
     const response = await this.axios.post("/login", data);
-    const token = response.data.token;
-    console.log("Token recibido en authService:", token);
     return response.data;
   }
   
