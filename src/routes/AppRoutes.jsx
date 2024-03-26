@@ -11,6 +11,7 @@ import AboutUs from "../pages/AboutUsPage/AboutUsPage"
 import SafeMapPage  from "../pages/SafeMapPage/SafeMapPage"
 import SafeMapAdded from "../pages/SafeMapAddedPage/SafeMapAdded"
 import  ContributionPage  from "../pages/Contributions/ContributionPage"
+import loaderSafeMap from "../components/SafeMap/loaderSafeMap"
 
 const AppRoutes = () => {
   const router = createBrowserRouter([
@@ -56,7 +57,8 @@ const AppRoutes = () => {
         },
         {
           path: "/safemap",
-          element: <SafeMapPage />  
+          element: <SafeMapPage />,
+          loader: loaderSafeMap,  
           
           
         },

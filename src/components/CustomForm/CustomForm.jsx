@@ -13,12 +13,7 @@ const CustomForm = ({
   ...props
 }) => {
 
-  const handleButtonClick = (e) => {
-    e.preventDefault(); 
-  e.target.form.submit(); 
-};
-  
-  return (
+   return (
     <Flex {...props} minW={"400px"} maxW={"400px"} flexDir={"column"}>
       <Box textAlign="center"><Text fontSize={"48px"} fontWeight={"bold"} >
         {title}
@@ -37,7 +32,7 @@ const CustomForm = ({
             placeholder={option}
           />
         ))}
-        <button type="submit" onClick={handleButtonClick}>{submitButtonLabel}</button>
+        <button type="submit" >{submitButtonLabel}</button>
       </form>
         
         

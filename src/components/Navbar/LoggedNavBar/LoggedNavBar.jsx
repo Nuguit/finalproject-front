@@ -54,6 +54,7 @@ const LoggedNavbar = () => {
             </NavigationLink>
           )
         })}
+        <a href="/" onClick={logout}>Chao pescao</a>
       </Flex>
       <Flex>        
             <CustomLink to="/">

@@ -15,6 +15,7 @@ const LoginPage = () => {
   const onChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
+    
   };
 
   const onSubmit = async (e) => {
@@ -27,10 +28,11 @@ const LoginPage = () => {
       <CustomForm
         marginBottom={"80px"}
         title={"Login"}
-        subtitle={"Let’s start cooking!:"}
-        onChange={onChange}
+         onChange={onChange}
         onSubmit={onSubmit}
         options={["email", "password"]}
+      submitButtonLabel={"Ay,zeñó"}
+        
       />
     </FormLoginLayout>
   )

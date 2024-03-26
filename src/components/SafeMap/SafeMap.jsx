@@ -3,10 +3,14 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import Marker2 from "./Marker2.png";
 import Formulario from './Form/SafeMapForm';
 import { Text } from '@chakra-ui/react';
+import { useLoaderData } from 'react-router-dom';
+
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function MyMap() {
+  const warnings = useLoaderData()
+  console.log(warnings)
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey
@@ -48,7 +52,7 @@ function MyMap() {
       const data = await response.json();
       setMarkers(data);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 

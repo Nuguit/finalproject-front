@@ -2,11 +2,12 @@ import AxiosConfig from "./axios"
 
 class SafeMapService extends AxiosConfig {
   constructor() {
-    super("warnings")
+    super("/profile")
   }
 
   async getAllWarnings() {
-    const response = await this.axios.get("/contribuciones")
+    const response = await this.axios.get("/safemap")
+    console.log(response.data)
     return response.data
   }
 
@@ -26,4 +27,4 @@ class SafeMapService extends AxiosConfig {
 
 }
 
-export default new SafeMapService()
+export default new SafeMapService
