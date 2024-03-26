@@ -60,7 +60,7 @@ const SignupPage = () => {
       </Box>
       
 
-     <Link to="/tuperfil"> <Box paddingLeft={"200px"}><SignupPageButton/></Box></Link>
+     
       
 
 
