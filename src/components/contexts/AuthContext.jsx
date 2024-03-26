@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       const token = getToken()
       if (token) {
         const loggedUser = await authService.getUser(token)
-        console.log("El mensaje que quiero", loggedUser)
+        
         setUser(loggedUser)
 
       }

@@ -7,7 +7,7 @@ import { Image } from '@chakra-ui/react'
 import icono from "./../MainNavbar/icono.png"
 import NavigationLink from "../../NavigationLink/NavigationLink"
 import SafeWalkNavbar from "./SafeWalkNavbar.png"
-
+import SafeMapPage from "../../../pages/SafeMapPage/SafeMapPage"
 
 const LoggedNavbar = () => {
   
@@ -19,9 +19,10 @@ const LoggedNavbar = () => {
   const NAVIGATION_LINK = [
     {
       link: "/tuperfil",
-      text: `¡Hola, ${user}!`,
+      text: `¡Hola, ${user ? user.username : 'invitado'}!`,
       
     },
+    
     
   ]
 

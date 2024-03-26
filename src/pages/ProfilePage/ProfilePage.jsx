@@ -1,49 +1,24 @@
-import { useContext, useState } from "react"
-import { AuthContext } from "../../contexts/AuthContext"
 import { Text, Box, Flex, Modal } from "@chakra-ui/react"
-import LoggedNavbar from "../../components/Navbar/LoggedNavBar/LoggedNavBar"
 import ProfilePagePicture from "./ProfilePagePicture.jpg"
 import PageWrapper from "../../components/PageWrapper/PageWrapper"
-import CustomForm from "../../components/CustomForm/CustomForm"
-import SafeMapService from "../../services/profile.service"
-import PenEditIcon from "../../components/PenEditIcon/PenEditIcon"
+import ModalLogic from "../../components/Modal/ModalLogic"
+import { Link } from "react-router-dom"
+import { useContext, useState } from "react"
+import { AuthContext } from "../../contexts/AuthContext"
+
+const ProfilePage = ({ }) => {
 
 
-const ProfilePage = ({}) => {
-  const { user } = useContext(AuthContext);
-  const [showModal, setShowModal] = useState(false);
-  const [editProfileData, setEditProfileData] = useState({});
-     
+  const user  = useContext(AuthContext);
+
 
   if (!user) {
-    return <div>¡Vaya! Parece que no estás logueado. ¡Debes iniciar sesión para ver tu perfil!</div>; 
+    return <div>¡Vaya! Parece que no estás logueado. ¡Debes iniciar sesión para ver tu perfil!</div>;
   }
 
   const { username, email, avatar } = user || {};
 
-  const onOpen = () => {
-    setShowModal(true);
-  };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditProfileData({ ...editProfileData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try{
-      const updatedProfile = await SafeMapService.editProfile(user._id, editProfileData);
-      console.log("Perfil actualizado:", updatedProfile);
-      setShowModal(false);
-    
-    } catch (error){console.error("Error al editar tu perfil", error)}
-  };
-
-const PROFILE_OPTIONS = [
-  "Username",
-  "avatar", 
-  "email"]
 
 
 
@@ -57,7 +32,7 @@ const PROFILE_OPTIONS = [
           boxSize="50px"
           alt="Avatar"
         />
-        <PenEditIcon onClick={onOpen} /> 
+        <ModalLogic />
         <Text textAlign="center" marginBottom="10px">
           ¡Bienvenid@ de nuevo!
         </Text>
@@ -65,10 +40,10 @@ const PROFILE_OPTIONS = [
           ¿Qué te apetece hacer hoy?
         </Text>
         <Text textAlign="center" marginBottom="10px">
-          Ir al Safemap
+          <Link to="/safemap">Ir al Safemap</Link>
         </Text>
         <Text textAlign="center" marginBottom="10px">
-          Ver tus contribuciones
+          <Link to="/contribuciones">Ver tus contribuciones</Link>
         </Text>
         <Box
           as="img"
@@ -79,25 +54,10 @@ const PROFILE_OPTIONS = [
           height="auto"
           marginTop="20px"
         />
-        
-        {showModal && (
-          <Modal isOpen={showModal} onClose={()=> setShowModal(false) }>
-            <CustomForm
-            options={PROFILE_OPTIONS}
-            onChange={handleChange}
-            onSubmit={handleSubmit}
-            title={"Edita tu perfil"}
-          />
-
-
-          </Modal>
-        )}
 
 
 
-        </Flex>
-        
-      
+      </Flex>
     </PageWrapper>
   )
 }

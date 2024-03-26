@@ -1,6 +1,5 @@
 import React from 'react'
-import LoggedNavbar from '../../components/Navbar/LoggedNavBar/LoggedNavBar'
-import Footer from '../../components/Footer/Footer'
+
 import SafeMapTitle from "../../components/SafeMap/SafeMapTitle.png"
 import { Text } from '@chakra-ui/react'
 import Formulario from '../../components/SafeMap/Form/SafeMapForm'
@@ -29,12 +28,12 @@ const SafeMapPage = () => {
 
          <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"10px"}fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:</Text>
     
-        <Formulario />
+        
 
 
 
 
-    <Footer />
+    
     </>
   )
 }
