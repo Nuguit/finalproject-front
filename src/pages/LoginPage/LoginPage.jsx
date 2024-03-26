@@ -31,7 +31,7 @@ const LoginPage = () => {
          onChange={onChange}
         onSubmit={onSubmit}
         options={["email", "password"]}
-      submitButtonLabel={"Ay,zeñó"}
+      submitButtonLabel={"Inicia sesión"}
         
       />
     </FormLoginLayout>

@@ -34,10 +34,6 @@ export const AuthProvider = ({ children }) => {
 
   const logout = (e) => {
     if (e) e.preventDefault()
-    // REMOVEMOS EL TOKEN
-    // SETEAMOS EL USUARIO A NULL
-    // REDIRECCIÓN AL LOGIN!!!
-    console.log("ENTRO AL LOGOUT!!!")
     localStorage.removeItem("token")
     setUser(null)
     navigate("/login")

@@ -35,7 +35,7 @@ const SignupPage = () => {
         duration: 5000,
         isClosable: true,
       })
-      navigate("/safemap")
+      navigate("/tuperfil")
     } catch (error) {
       console.error("Error ==>", error)
     }
@@ -55,8 +55,8 @@ const SignupPage = () => {
         title={"Regístrate"}
         onChange={onChange}
         onSubmit={onSubmit}
-        options={["email", "password", "username" ]}/>
-        
+        options={["email", "password", "username" ]}
+        submitButtonLabel={"Regístrate"}/>
       </Box>
       
 
