@@ -30,7 +30,10 @@ const LoginPage = () => {
         title={"Login"}
          onChange={onChange}
         onSubmit={onSubmit}
-        options={["email", "password"]}
+        options={[
+          { name: "email", placeholder: "Correo electrónico" },
+          { name: "password", placeholder: "Contraseña" }
+        ]}
       submitButtonLabel={"Inicia sesión"}
         
       />
