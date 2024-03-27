@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import Marker2 from "./Marker2.png";
 import Formulario from './Form/SafeMapForm';
 import { Text } from '@chakra-ui/react';
@@ -9,38 +9,53 @@ import { useLoaderData } from 'react-router-dom';
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function MyMap() {
-  const warnings = useLoaderData();
+  
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey
   });
-
+//const warnings = useLoaderData();
   const [currentLocation, setCurrentLocation] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [markers, setMarkers] = useState([]);
   const [hoveredMarker, setHoveredMarker] = useState(null);
   const [coordinates, setCoordinates] = useState([]);
-
-
+  const [activeMarker, setActiveMarker] = useState(null);
+  
 
   useEffect(() => {
-    getAllWarnings();
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setCurrentLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/profile/safemap');
+        if (!response.ok) {
+          throw new Error('Error al obtener las coordenadas');
+        }
+        const data = await response.json();
+        setMarkers(data);
+        
+  
+        // Inicializar la ubicación actual después de obtener los datos
+        navigator.geolocation.getCurrentPosition((position) => {
+          setCurrentLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          });
         });
-        setLoading(false);
-      });
-    }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchData();
   }, []);
+  
 
+  const handleMarkerClick = (marker) => {
+    setActiveMarker(marker);
+  };
 
-
-
-
+  const handleMarkerHover = (marker) => {
+    setHoveredMarker(marker);
+  };
   const handleMapClick = (event) => {
     const newMarker = {
       lat: event.latLng.lat(),
@@ -49,29 +64,6 @@ function MyMap() {
     setMarkers([...markers, newMarker]);
   };
 
-  const getAllWarnings = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/profile/safemap');
-      if (!response.ok) {
-        throw new Error('Error al obtener las coordenadas');
-      }
-      const data = await response.json();
-      console.log(data)
-      setMarkers(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleMarkerClick = (marker) => {
-    setMarkers(markers.map((m) => {
-      if (m === marker) {
-        return { ...m, active: true };
-      } else {
-        return { ...m, active: false };
-      }
-    }));
-  };
 
   const mapOptions = {
     center: currentLocation,
@@ -79,40 +71,41 @@ function MyMap() {
     onClick: handleMapClick,
   };
 
-  const handleMarkerHover = (marker) => {
-    setHoveredMarker(marker);
-  };
+ 
+
+  
+
 
   return isLoaded ? (
     <>
       <GoogleMap
-        mapContainerStyle={{ width: '100%', height: '800px', border: '10px solid green' }}
-        {...mapOptions}
-      >
-        {loading ? (
-          <div>Cargando ubicación...</div>
-        ) : null}
-        {currentLocation && (
-          <>
-            <Marker
-              position={currentLocation}
-              icon={Marker2}
-              onClick={() => handleMarkerClick(null)}
-            />
-            {markers.map((marker, index) => (
-              <Marker
-                key={index}
-                position={{ lat: marker.lat, lng: marker.lng }}
-                onMouseOver={() => handleMarkerHover(marker)}
-                onMouseOut={() => handleMarkerHover(null)}
-                icon={Marker2}
-                onClick={() => handleMarkerClick(marker)}
-              />
-            ))}
-
-             </>
+  mapContainerStyle={{ width: '100%', height: '800px', border: '10px solid green' }}
+  {...mapOptions}
+>
+{currentLocation && (
+          <Marker
+            position={currentLocation}
+            icon={Marker2}
+          />
         )}
+        {markers.map((marker, index) => (
+          <Marker
+            key={index}
+            position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
+            onMouseOver={() => handleMarkerHover(marker)}
+            onMouseOut={() => handleMarkerHover(null)}
+            icon={Marker2}
+            onClick={() => handleMarkerClick(marker)}
+          >
+            {activeMarker === marker && (
+              <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                <div>{marker.input}</div>
+              </InfoWindow>
+           )}
+          </Marker>
+        ))}
       </GoogleMap>
+
        <div>
               <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"10px"} fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:</Text>
 
