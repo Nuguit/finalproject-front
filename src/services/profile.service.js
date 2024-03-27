@@ -11,6 +11,12 @@ class SafeMapService extends AxiosConfig {
     return response.data
   }
 
+  async contributions(){
+    const response = await this.axios.get("/contribuciones")
+    console.log(response.data)
+    return response.data
+  }
+
    async createWarning(data) {
     data.location = {
      type: "Point",                      
@@ -20,8 +26,8 @@ class SafeMapService extends AxiosConfig {
     return response.data
   }
 
-  async editProfile(id, data) {
-    const response = await this.axios.put(`/tuperfil/${id}`, data)
+  async editProfile( data) {
+    const response = await this.axios.put("/tuperfil", data)
     return response.data
   }
 

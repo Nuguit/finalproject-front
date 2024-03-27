@@ -12,6 +12,7 @@ import SafeMapPage  from "../pages/SafeMapPage/SafeMapPage"
 import SafeMapAdded from "../pages/SafeMapAddedPage/SafeMapAdded"
 import  ContributionPage  from "../pages/Contributions/ContributionPage"
 import loaderSafeMap from "../components/SafeMap/loaderSafeMap"
+import loaderContributions from "../components/Contributions/loaderContributions"
 
 const AppRoutes = () => {
   const router = createBrowserRouter([
@@ -43,21 +44,28 @@ const AppRoutes = () => {
         },
         {
           path: "/contribuciones",
-          element:  <ContributionPage />
+          element: (
+            <AuthMiddleware>
+               <ContributionPage />  
+             </AuthMiddleware> ), 
+             loader: loaderContributions,
           
         },
 
         {
           path: "/tuperfil",
-          element: //(
+          element: (
            <AuthMiddleware>
               <ProfilePage />  
             </AuthMiddleware>  
-          //),
+          ),
         },
         {
           path: "/safemap",
-          element: <SafeMapPage />,
+          element: (
+            <AuthMiddleware>
+               <SafeMapPage />  
+             </AuthMiddleware> ), 
           loader: loaderSafeMap,  
           
           

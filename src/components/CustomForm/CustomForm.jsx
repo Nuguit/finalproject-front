@@ -2,7 +2,7 @@ import { Flex, Text } from "@chakra-ui/react"
 import React from "react"
 import Input from "../Input/Input"
 import SubmitButton from "../Buttons/SubmitButton/SubmitButton"
-import { capitalizeText } from "../../Utils/Utils"
+
 
 const CustomForm = ({
   title,
@@ -33,7 +33,7 @@ const CustomForm = ({
                 name={option}
                 onChange={onChange}
                 key={option}
-                placeholder={capitalizeText(option)}
+                placeholder={(option)}
                  
               />
             )

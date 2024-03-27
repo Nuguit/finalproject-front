@@ -26,17 +26,15 @@ const LoginPage = () => {
   return (
     <FormLoginLayout>
       <CustomForm
-        marginBottom={"80px"}
-        title={"Login"}
-         onChange={onChange}
-        onSubmit={onSubmit}
-        options={[
-          { name: "email", placeholder: "Correo electrónico" },
-          { name: "password", placeholder: "Contraseña" }
-        ]}
-      submitButtonLabel={"Inicia sesión"}
         
-      />
+        
+        marginBottom={"10px"}
+        title={"Inicia Sesión"}
+        onChange={onChange}
+        onSubmit={onSubmit}
+        options={["email", "password", ]}
+        />
+      
     </FormLoginLayout>
   )
 }

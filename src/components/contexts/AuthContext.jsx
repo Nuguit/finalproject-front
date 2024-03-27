@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({})
   const [isLoading, setIsLoading] = useState(true)
 
   const setToken = (token) => {
@@ -40,13 +40,6 @@ export const AuthProvider = ({ children }) => {
   }
 
   const login = async (userData) => {
-    // LLAMADA ==> LOGIN ----
-    // token... => INFORMACIÓN DEL USUARIO!!! ----
-    // GUARDAMOS EL TOKEN ----
-    // RECOGEMOS AL USUARIO CON EL TOKEN
-    // GUARDAMOS AL USUARIO EN EL ESTADO DE USER
-    // REDIRECCIÓN A NUESTRO PERFIL...
-    // Y SI LOS DATOS NO SON CORRECTOS...
     try {
       const { token } = await authService.login(userData)
       setToken(token)

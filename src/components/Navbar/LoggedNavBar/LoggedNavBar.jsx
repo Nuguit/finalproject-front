@@ -7,6 +7,7 @@ import { Image } from '@chakra-ui/react'
 import icono from "./../MainNavbar/icono.png"
 import NavigationLink from "../../NavigationLink/NavigationLink"
 import SafeWalkNavbar from "./SafeWalkNavbar.png"
+import NavbarLogic from "../NavbarLogic"
 
 const LoggedNavbar = () => {
   

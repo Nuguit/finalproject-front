@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { AuthContext } from "../contexts/AuthContext.jsx"
+import { AuthContext } from "../contexts/AuthContext"
 import Loading from "../components/Loading/Loading"
 import { Navigate } from "react-router-dom"
 

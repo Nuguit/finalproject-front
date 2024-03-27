@@ -11,7 +11,9 @@ import CustomForm from '../CustomForm/CustomForm';
 const ModalLogic = () => {
     const { user , setUser } = useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
-    const [editProfileData, setEditProfileData] = useState({});
+    const [editProfileData, setEditProfileData] = useState({username: "",
+    avatar:"", 
+    email:""});
     const [error, setError] = useState(null);
     
 const handleIconClick = () => {
