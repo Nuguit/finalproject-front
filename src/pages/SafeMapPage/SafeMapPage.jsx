@@ -26,7 +26,7 @@ const SafeMapPage = () => {
      
     
 
-         <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"10px"}fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:</Text>
+         
     
         
 
