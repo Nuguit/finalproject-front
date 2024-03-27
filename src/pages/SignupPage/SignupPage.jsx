@@ -1,11 +1,11 @@
 import React, {  useState } from "react"
 import FormSignupLayout from "../../components/FormPagesLayout/FormSignupLayout"
 import CustomForm from "../../components/CustomForm/CustomForm"
-import authService from "../../services/auth.service"
+import { AuthContext } from "../../contexts/AuthContext"
 import { Flex, useToast } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
 import SignupPicture from "./SignupPicture.jpg"
-
+import authService from "../../services/auth.service"
 import { Box } from "@chakra-ui/react"
 
 
@@ -29,15 +29,15 @@ const SignupPage = () => {
     try {
       await authService.signup(userData)
       toast({
-        title: "Enhorabuena!",
-        description: "Ya tienes una cuenta en SafeMap :)",
+        title: "Account created.",
+        description: "We've created your account for you.",
         status: "success",
         duration: 5000,
         isClosable: true,
       })
-      navigate("/tuperfil")
+      navigate("/login")
     } catch (error) {
-      console.error("Error ==>", error)
+      console.log("Error ==>", error)
     }
   }
 

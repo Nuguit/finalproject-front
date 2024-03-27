@@ -51,11 +51,12 @@ function MyMap() {
   
   const getAllWarnings = async () => {
     try {
-      const response = await fetch('/api/profile/safemap');
+      const response = await fetch('http://localhost:3000/api/profile/safemap');
       if (!response.ok) {
         throw new Error('Error al obtener las coordenadas');
       }
       const data = await response.json();
+      console.log(data)
       setMarkers(data);
     } catch (error) {
       console.log(error);
@@ -83,6 +84,7 @@ function MyMap() {
   };
 
   return isLoaded ? (
+    <>
     <GoogleMap
       mapContainerStyle={{ width: '100%', height: '800px', border: '10px solid green' }}
       {...mapOptions}
@@ -111,11 +113,11 @@ function MyMap() {
        <div>
           <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"10px"}fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:</Text>
           
-        </div> <Formulario/> </>
+        </div> </> 
       )}
     </GoogleMap>
-    
-    
+    <Formulario/>
+    </>
   ) : (
     <div>Cargando mapa...</div>
   );

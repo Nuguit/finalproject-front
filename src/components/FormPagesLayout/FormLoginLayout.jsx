@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react"
 import LoginPicture from "../../pages/LoginPage/LoginPicture.jpg"
-import SignupPageButton from "../Buttons/SignupPage/SignupPageButton"
+
 
 
 const FormLoginLayout = ({  children  }) => {

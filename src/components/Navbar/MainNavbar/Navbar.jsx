@@ -4,7 +4,7 @@ import { Image } from '@chakra-ui/react'
 import icono from "./icono.png"
 import CustomLink from "../../CustomLink/CustomLink"
 import NavigationLink from "../../NavigationLink/NavigationLink"
-import { AuthContext } from "../../contexts/AuthContext"
+
 
 
 

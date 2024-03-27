@@ -11,15 +11,11 @@ import NavbarLogic from "../NavbarLogic"
 
 const LoggedNavbar = () => {
   
-  
-  
-  
-  
     const { user, logout } = useContext(AuthContext)
   const NAVIGATION_LINK = [
     {
       link: "/tuperfil",
-      text: `¡Hola, ${user ? user.username : 'invitado'}!`,
+      text: user ? `¡Hola, ${user}!` : "¡Hola!"
       
     },
     
