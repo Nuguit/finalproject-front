@@ -37,7 +37,6 @@ export const AuthProvider = ({ children }) => {
 
   const logout = (e) => {
     if (e) e.preventDefault()
-    console.log("He hecho clic")
     localStorage.removeItem("token")
     setUser(null)
     navigate("/login")

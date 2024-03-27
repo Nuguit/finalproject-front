@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   const logout = (e) => {
     if (e) e.preventDefault()
     localStorage.removeItem("token")
-    setUser(null)
+    setUser({})
     navigate("/login")
   }
 

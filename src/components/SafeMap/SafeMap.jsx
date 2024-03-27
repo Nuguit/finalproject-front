@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Marker2 from "./Marker2.png";
 import Formulario from './Form/SafeMapForm';
 import { Text } from '@chakra-ui/react';
@@ -9,9 +9,8 @@ import { useLoaderData } from 'react-router-dom';
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function MyMap() {
-  const warnings = useLoaderData()
-  console.log(warnings)
-  const { isLoaded } = useJsApiLoader({
+  const warnings = useLoaderData();
+    const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: apiKey
   });
@@ -20,10 +19,12 @@ function MyMap() {
   const [loading, setLoading] = useState(true);
   const [markers, setMarkers] = useState([]);
   const [hoveredMarker, setHoveredMarker] = useState(null);
+  const [coordinates, setCoordinates] = useState([]);
+
+ 
 
   useEffect(() => {
-    getAllCoordinates();
-    
+    getAllWarnings();
     
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -36,6 +37,10 @@ function MyMap() {
     }
   }, []);
 
+   
+
+
+
   const handleMapClick = (event) => {
     const newMarker = {
       lat: event.latLng.lat(),
@@ -43,7 +48,8 @@ function MyMap() {
     };
     setMarkers([...markers, newMarker]);
   };
-  const getAllCoordinates = async () => {
+  
+  const getAllWarnings = async () => {
     try {
       const response = await fetch('/api/profile/safemap');
       if (!response.ok) {
@@ -75,6 +81,7 @@ function MyMap() {
   const handleMarkerHover = (marker) => {
     setHoveredMarker(marker);
   };
+
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={{ width: '100%', height: '800px', border: '10px solid green' }}
@@ -95,28 +102,24 @@ function MyMap() {
               key={index}
               position={{ lat: marker.lat, lng: marker.lng }}
               onMouseOver={() => handleMarkerHover(marker)} 
-          onMouseOut={() => handleMarkerHover(null)} 
+              onMouseOut={() => handleMarkerHover(null)} 
               icon={Marker2}
               onClick={() => handleMarkerClick(marker)} 
             />
           ))}
-          {hoveredMarker && (
-        <InfoWindow 
-        position={{ lat: hoveredMarker.lat, lng: hoveredMarker.lng }}
-        onCloseClick={() => setHoveredMarker(null)} 
-      >
-        <div>
+
+       <div>
           <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"10px"}fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:</Text>
-          <Formulario/> 
-        </div>
-      </InfoWindow>
-          )}
-        </>
+          
+        </div> <Formulario/> </>
       )}
     </GoogleMap>
+    
+    
   ) : (
     <div>Cargando mapa...</div>
   );
 }
 
 export default MyMap;
+
