@@ -4,6 +4,7 @@ import Marker2 from "./Marker2.png";
 import Formulario from './Form/SafeMapForm';
 import { Text } from '@chakra-ui/react';
 import { useLoaderData } from 'react-router-dom';
+import SafeMapService from "../../services/profile.service"
 
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
@@ -31,9 +32,10 @@ function MyMap() {
         }
         const data = await response.json();
         setMarkers(data);
+        console.log("LOS DATOS", data)
         
   
-        // Inicializar la ubicación actual después de obtener los datos
+        
         navigator.geolocation.getCurrentPosition((position) => {
           setCurrentLocation({
             lat: position.coords.latitude,
@@ -61,7 +63,14 @@ function MyMap() {
       lat: event.latLng.lat(),
       lng: event.latLng.lng()
     };
-    setMarkers([...markers, newMarker]);
+    setMarkers([...markers, {
+      input: "test",
+      location: {
+        type: "Point",
+        coordinates: [newMarker.lng, newMarker.lat],
+      }, 
+    },
+  ]);
   };
 
 
@@ -88,9 +97,9 @@ function MyMap() {
             icon={Marker2}
           />
         )}
-        {markers.map((marker, index) => (
+        {markers.map((marker, id) => (
           <Marker
-            key={index}
+            key={id}
             position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
             onMouseOver={() => handleMarkerHover(marker)}
             onMouseOut={() => handleMarkerHover(null)}
