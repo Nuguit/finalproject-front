@@ -9,7 +9,7 @@ const NotFoundPage = () => {
       flexDir={"column"}
       paddingTop={"150px"}
       gap={"12px"}
-      justifyContent={"center"}
+      justifycontent={"center"}
       alignItems={"center"}
     >
       <Text fontWeight={"bold"} fontSize={"52px"}>

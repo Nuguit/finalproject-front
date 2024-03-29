@@ -10,10 +10,12 @@ import SafeWalkNavbar from "./SafeWalkNavbar.png"
 import off from "./off.png"
 import { Link } from "react-router-dom"
 import { Box } from "@chakra-ui/react"
+import deleteuserpic from "../../../utils/deleteuserpic.png"
+
 
 const LoggedNavbar = () => {
   
-    const { user, logout } = useContext(AuthContext)
+    const { user, logout, deleteUser } = useContext(AuthContext)
   const NAVIGATION_LINK = [
     {
       link: "/tuperfil",
@@ -31,12 +33,12 @@ const LoggedNavbar = () => {
     (
       <Flex
         padding={"34px 80px"}
-        justifyContent={"space-between"}
+        justifycontent={"space-between"}
         alignItems="center"
         backgroundColor={"#ff4f5a"}
         color={"white"}
       >
-        <img justifyContent={"left"} src={SafeWalkNavbar} width={"300px"} height={"50px"} alt="SafeWalk Navbar" />
+        <img justifycontent={"left"} src={SafeWalkNavbar} width={"300px"} height={"50px"} alt="SafeWalk Navbar" />
     
         <Flex gap={"34px"}>
           {NAVIGATION_LINK.map(({ link, text }) => {
@@ -57,13 +59,29 @@ const LoggedNavbar = () => {
                 borderRadius="full"
                 boxSize="100px"
                 src={off}
-                alt="SafeWalk"
+                alt="Cerrar sesión"
                 onClick={logout}
               />
             </Link>
           </Box>
         </Flex>
     
+        <Box width="200px" height="30px" display="flex" alignItems="center"> 
+            <Link to="/login">
+              <Image
+              
+                borderRadius="full"
+                boxSize="80px"
+                src={deleteuserpic}
+                alt="Darme de baja"
+                onClick={deleteUser}
+              /> Darme de baja
+            </Link>
+          </Box>
+
+
+
+
         <Flex>        
           <CustomLink to="/">
             <Image

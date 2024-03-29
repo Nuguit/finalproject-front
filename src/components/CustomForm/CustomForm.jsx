@@ -34,7 +34,7 @@ const CustomForm = ({
                 onChange={onChange}
                 key={option}
                 placeholder={(option)}
-                 
+                 onSubmit={onSubmit}
               />
             )
           })}

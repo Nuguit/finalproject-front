@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react"
 import authService from "../services/auth.service"
 import { useNavigate } from "react-router-dom"
+import SafeMapService from "../services/profile.service"
 
 export const AuthContext = createContext()
 
@@ -30,9 +31,20 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     } 
-  }
-   
+
   
+  }
+  
+  const deleteUser = async () => {
+    try {
+      await authService.deleteUser(); 
+      localStorage.removeItem("token");
+      setUser(null);
+    } catch (error) {
+      console.error("Error al eliminar usuario:", error);
+    }
+  };
+   
 
   const logout = (e) => {
     if (e) e.preventDefault()
@@ -57,8 +69,10 @@ export const AuthProvider = ({ children }) => {
     getUser()
   }, [])
 
+  
+
   return (
-    <AuthContext.Provider value={{ user, logout, login, isLoading }}>
+    <AuthContext.Provider value={{ user, logout, login, isLoading, deleteUser }}>
       {children}
     </AuthContext.Provider>
   )

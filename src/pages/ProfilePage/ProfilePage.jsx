@@ -5,6 +5,7 @@ import ModalLogic from "../../components/Modal/ModalLogic"
 import { Link } from "react-router-dom"
 import { useContext, useState } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
+import DeleteUser from "../../components/DeleteUser/DeleteUser"
 
 const ProfilePage = ({ }) => {
 
@@ -24,7 +25,7 @@ const ProfilePage = ({ }) => {
 
   return (
     <PageWrapper>
-      <Flex alignItems="center" justifyContent="center" flexDirection="column" marginTop="20px">
+      <Flex alignItems="center" justifycontent="center" flexDirection="column" marginTop="20px">
         <Box
           as="img"
           src={avatar}
@@ -44,6 +45,7 @@ const ProfilePage = ({ }) => {
         </Text>
         <Text textAlign="center" marginBottom="10px">
           <Link to="/contribuciones">Ver tus contribuciones</Link>
+          <DeleteUser/>
         </Text>
         <Box
           as="img"

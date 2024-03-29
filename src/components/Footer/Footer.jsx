@@ -39,7 +39,7 @@ const Footer = () => {
 
 {ICONS.map(({ component, link, id}) => {
         return (
-          <Box key={id} justifyContent={"left"} padding={"10px"}>
+          <Box key={id} justifycontent={"left"} padding={"10px"}>
           <CustomLink to={link} cursor={"pointer"} key={id}>
             {component}
           </CustomLink></Box>

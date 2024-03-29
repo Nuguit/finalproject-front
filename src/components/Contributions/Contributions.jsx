@@ -24,10 +24,10 @@ const ContributionsComponent = () => {
 
   return (
     <Flex flexDirection="column" alignItems="center">
-      <Flex justifyContent="center" textAlign="center">
+      <Flex justifycontent="center" textAlign="center">
         <Text fontSize="50px">Aquí están tus contribuciones:</Text>
       </Flex>
-      <Box paddingTop="150px" paddingBottom="150px" fontSize="50px" display="flex" justifyContent="center">
+      <Box paddingTop="150px" paddingBottom="150px" fontSize="50px" display="flex" justifycontent="center">
         {route ? (
           <Text>Contribuciones disponibles en <a href={route}>safemap</a>.</Text>
         ) : (

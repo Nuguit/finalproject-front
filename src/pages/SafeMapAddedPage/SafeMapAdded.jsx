@@ -15,7 +15,7 @@ const SafeMapAdded = () => {
         
        <Box display={"flex"} width={"80%"}  height={"80%"} textAlign={"center"} backgroundColor={"blue"} paddingTop={"100px"} ><img src={SafeMapTitle}></img></Box>
 
-        < Flex textAlign={"center"} justifyContent={"center"}>
+        < Flex textAlign={"center"} justifycontent={"center"}>
         <Text paddingTop={"100px"} fontSize={"40px"}>
         ¡Gracias! <br></br>
         Tu aviso ha sido añadido al SafeMap con éxito.
@@ -23,7 +23,7 @@ const SafeMapAdded = () => {
         
       
        <Text paddingTop={"200px"} textAlign={"center"} fontSize={"40px"}>¿Qué te apetece hacer ahora?</Text>
-       <Flex display={"flex"} justifyContent={"center"}  paddingBottom={"100px"} width={"100%"}>
+       <Flex display={"flex"} justifycontent={"center"}  paddingBottom={"100px"} width={"100%"}>
        <Link to= "/"><TurnMainPage /></Link>
         <Box width="100px" />
         <Link to= "/safemap"><TurnSafeMap /></Link>

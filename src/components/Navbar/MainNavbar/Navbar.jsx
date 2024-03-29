@@ -26,7 +26,7 @@ const Navbar = () => {
 
     <Flex
       padding={"34px 80px"}
-      justifyContent={"space-between"}
+      justifycontent={"space-between"}
       alignItems={"right"}
       backgroundColor={"#ff4f5a"}
       color={"white"}

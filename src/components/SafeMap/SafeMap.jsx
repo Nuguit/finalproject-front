@@ -15,7 +15,7 @@ function MyMap() {
     id: 'google-map-script',
     googleMapsApiKey: apiKey
   });
-//const warnings = useLoaderData();
+const warnings = useLoaderData();
   const [currentLocation, setCurrentLocation] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [hoveredMarker, setHoveredMarker] = useState(null);

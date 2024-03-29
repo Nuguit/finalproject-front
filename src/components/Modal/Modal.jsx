@@ -13,7 +13,7 @@ const ModalEdi = ({ children, isOpen, onClose }) => {
       <ModalContent maxW={"900px"} borderRadius={"50px"} padding={"100px"}>
         <ModalCloseButton top={"25px"} right={"25px"} size={"lg"} />
         <ModalBody
-          style={{ display: "flex", justifyContent: "center" }}
+          style={{ display: "flex", }}
           padding={0}
         >
           {children}
