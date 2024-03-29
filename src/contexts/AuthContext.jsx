@@ -56,7 +56,8 @@ export const AuthProvider = ({ children }) => {
   const login = async (userData) => {
     try {
       const { token } = await authService.login(userData)
-      setToken(token)
+      setToken(token);
+      console.log("Token establecido en localStorage:", token);
       await getUser()
       navigate("/tuperfil")
     } catch (error) {
@@ -72,7 +73,7 @@ export const AuthProvider = ({ children }) => {
   
 
   return (
-    <AuthContext.Provider value={{ user, logout, login, isLoading, deleteUser }}>
+    <AuthContext.Provider value={{ user,setUser, logout, login, isLoading, deleteUser }}>
       {children}
     </AuthContext.Provider>
   )

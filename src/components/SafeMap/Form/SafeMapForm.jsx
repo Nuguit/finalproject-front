@@ -29,7 +29,7 @@ function Formulario() {
         />
       
       <Link to={"/safemap/added"}>
-      <button type="submit"style={{ color: 'white', backgroundColor: '#ff4f5a', marginLeft: '100px', padding: '10px', borderRadius: '20px', fontSize: '30px' }}>Añadir aviso</button></Link>
+      <button type="submit"style={{ color: 'white', backgroundColor: '#308c67', marginLeft: '100px', padding: '10px', borderRadius: '20px', fontSize: '30px' }}>Añadir aviso</button></Link>
     </form>
   );
 }

@@ -4,16 +4,24 @@ import ModalEdi from './Modal';
 import { AuthContext } from "../../contexts/AuthContext";
 import SafeMapService from "../../services/profile.service";
 import CustomForm from '../CustomForm/CustomForm';
+import { useParams } from 'react-router-dom';
+import { getProfileDetails } from '../../utils';
+import ProfileDetails from '../ProfileDetails/ProfileDetails';
 
 const ModalLogic = () => {
     const { user, setUser } = useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
-    const [editProfileData, setEditProfileData] = useState({
+    const [editProfileData, setEditProfileData] = 
+    useState({
         username: "",
-        avatar: "",
+        password: "",
         email: ""
     });
-    const [error, setError] = useState(null);
+    
+const {id} = useParams()
+const {username, password, email} = user
+
+const PROFILE_DETAILS = getProfileDetails(username, password, email)
 
     const handleIconClick = () => {
         setShowModal(true);
@@ -27,22 +35,16 @@ const ModalLogic = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("HOLA", user.user._id);
-        console.log("editProfileData:", editProfileData);
-        try {
-            const updatedProfile = await SafeMapService.editProfile(user.user._id, editProfileData);
-            if (updatedProfile) {
-              console.log("Perfil actualizado:", updatedProfile);
-                setUser(updatedProfile);
-                setShowModal(false);
-            } else {
-                setError("La solicitud para editar el perfil no fue exitosa.");
+        const updatedProfile = await SafeMapService.editProfile(id, editProfileData);
+        console.log("COSITAS", updatedProfile)
+            setShowModal(false);
+            setUser(updatedProfile)
+            try {
+            } catch (error) {
+             console.log("ERROR ==>", error)
             }
-        } catch (error) {
-            console.error("Error al editar tu perfil", error);
-            setError("Error al editar tu perfil. Por favor, inténtalo más tarde.")
-        }
-    };
+          }
+            
 
     const PROFILE_OPTIONS = [
         "username",
@@ -52,7 +54,9 @@ const ModalLogic = () => {
 
     return (
         <div>
-            <PenEditIcon onClick={handleIconClick} />
+            <ProfileDetails
+            onOpen={() => setShowModal(true)}
+            profileDetails={PROFILE_DETAILS}/>
             {showModal && (
                 <ModalEdi isOpen={showModal} onClose={() => setShowModal(false)}>
                     <CustomForm

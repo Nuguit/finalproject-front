@@ -1,43 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Flex, Box } from '@chakra-ui/react';
+import SafeMapService from '../../services/profile.service';
+import { Flex , Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-const ContributionsComponent = () => {
-  const [route, setRoute] = useState(null);
+function ContributionsComponent() {
+  const [warnings, setWarnings] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchWarnings = async () => {
       try {
-        const response = await fetch('/api/profile/safemap');
-        if (!response.ok) {
-          throw new Error('Error al obtener la ruta');
-        }
-        const data = await response.json();
-        setRoute(data.route);
+        const warningsData = await SafeMapService.contributions();
+        console.log("WARNINGSOWNER", warningsData)
+        setWarnings(warningsData);
+        console.log("WARNINGSDATA", warningsData)
       } catch (error) {
-        console.error(error);
+        console.error('Error al obtener las contribuciones:', error);
       }
     };
 
-    fetchData();
+    fetchWarnings();
   }, []);
 
   return (
-    <Flex flexDirection="column" alignItems="center">
-      <Flex justifycontent="center" textAlign="center">
-        <Text fontSize="50px">Aquí están tus contribuciones:</Text>
-      </Flex>
-      <Box paddingTop="150px" paddingBottom="150px" fontSize="50px" display="flex" justifycontent="center">
-        {route ? (
-          <Text>Contribuciones disponibles en <a href={route}>safemap</a>.</Text>
-        ) : (
-            <><Text>¡Vaya! Aún no hay nada por aquí. </Text>
-            <Link to="/safemap"><Text color="#ff4f5a">¿Quieres añadir tu primer aviso?</Text>
-          </Link></>
-        )}
-      </Box>
-    </Flex>
+    <Flex paddingTop="150px" paddingBottom="150px" display="flex" justifyContent="center" >
+    <div >
+      <p style={{ fontSize: '50px' }}>Aquí están tus contribuciones:</p>
+      {warnings.length > 0 ? (
+        <ol style={{ paddingTop: '150px', paddingBottom: '150px', fontSize: '25px', display: 'flex', justifyContent: 'center' }}>
+          {warnings.map((warning, index) => (
+            <li key={index}>
+              <p> {warning.input}</p>
+              <p>Coordenadas: {warning.location.coordinates.join(', ')}</p>
+              </li>
+          ))}
+        </ol>
+      ) : (
+        <>
+          <Text>¡Vaya! Aún no hay nada por aquí.</Text>
+          <Link to="/safemap">
+            <Text color="#308c67">¿Quieres añadir tu primer aviso?</Text>
+          </Link>
+        </>
+      )}
+    </div></Flex>
   );
-};
-
+}
 export default ContributionsComponent;

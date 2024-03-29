@@ -29,7 +29,7 @@ const Footer = () => {
     <Flex
     
       padding={"54px 80px"}
-      backgroundColor={"#ff4f5a"}
+      backgroundColor={"#308c67"}
       color={"white"}
       alignItems={"center"}
           

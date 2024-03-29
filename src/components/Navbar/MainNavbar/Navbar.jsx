@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/layout"
 import { useLocation } from "react-router-dom"
 import { Image } from '@chakra-ui/react'
-import icono from "./icono.png"
+import icono from "../../../utils/icono.jpg"
 import CustomLink from "../../CustomLink/CustomLink"
 import NavigationLink from "../../NavigationLink/NavigationLink"
 
@@ -28,7 +28,7 @@ const Navbar = () => {
       padding={"34px 80px"}
       justifycontent={"space-between"}
       alignItems={"right"}
-      backgroundColor={"#ff4f5a"}
+      backgroundColor={"#308c67"}
       color={"white"}
     >
       <Flex gap={"34px"}>

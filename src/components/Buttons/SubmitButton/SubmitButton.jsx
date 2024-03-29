@@ -5,7 +5,7 @@ const SubmitButton = () => {
   return (
     <ChakraButton
       _hover={{
-        backgroundColor: "#ff4f5a",
+        backgroundColor: "#308c67",
         color: "white"
       }}
       minH={"56px"}
@@ -15,7 +15,7 @@ const SubmitButton = () => {
       borderRadius={"20px"}
       backgroundColor={"white"}
       fontWeight={"bold"}
-      color={"#ff4f5a"}
+      color={"#308c67"}
       type="submit"
     >
       ¡Comienza a cambiar el mundo!

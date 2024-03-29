@@ -4,7 +4,7 @@ import CustomLink from "../../CustomLink/CustomLink"
 import { useContext } from "react"
 import { AuthContext } from "../../../contexts/AuthContext"
 import { Image, flexbox } from '@chakra-ui/react'
-import icono from "./../MainNavbar/icono.png"
+import icono from "../../../utils/icono.jpg"
 import NavigationLink from "../../NavigationLink/NavigationLink"
 import SafeWalkNavbar from "./SafeWalkNavbar.png"
 import off from "./off.png"
@@ -35,10 +35,10 @@ const LoggedNavbar = () => {
         padding={"34px 80px"}
         justifycontent={"space-between"}
         alignItems="center"
-        backgroundColor={"#ff4f5a"}
+        backgroundColor={"#308c67"}
         color={"white"}
       >
-        <img justifycontent={"left"} src={SafeWalkNavbar} width={"300px"} height={"50px"} alt="SafeWalk Navbar" />
+        <Image justifycontent={"left"} src={SafeWalkNavbar} width={"300px"} height={"50px"} alt="SafeWalk Navbar" />
     
         <Flex gap={"34px"}>
           {NAVIGATION_LINK.map(({ link, text }) => {
@@ -66,18 +66,7 @@ const LoggedNavbar = () => {
           </Box>
         </Flex>
     
-        <Box width="200px" height="30px" display="flex" alignItems="center"> 
-            <Link to="/login">
-              <Image
-              
-                borderRadius="full"
-                boxSize="80px"
-                src={deleteuserpic}
-                alt="Darme de baja"
-                onClick={deleteUser}
-              /> Darme de baja
-            </Link>
-          </Box>
+        
 
 
 

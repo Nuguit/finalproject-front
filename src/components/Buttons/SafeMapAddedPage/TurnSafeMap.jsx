@@ -14,7 +14,7 @@ const TurnSafeMap = () => {
       marginTop={"90px"}
       textAlign={"center"}
       borderRadius={"20px"}
-      backgroundColor={"#ff4f5a"}
+      backgroundColor={"#308c67"}
       color={"white"}
       type="submit"
       flexGrow={"1"}

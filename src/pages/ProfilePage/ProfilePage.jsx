@@ -1,61 +1,51 @@
-import { Text, Box, Flex, Modal } from "@chakra-ui/react"
-import ProfilePagePicture from "./ProfilePagePicture.jpg"
+import { Text, Box, Flex, Avatar } from "@chakra-ui/react"
 import PageWrapper from "../../components/PageWrapper/PageWrapper"
 import ModalLogic from "../../components/Modal/ModalLogic"
 import { Link } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
-import DeleteUser from "../../components/DeleteUser/DeleteUser"
+import DeleteUserButton from "../../components/DeleteUser/DeleteUser"
+import icono from "../../utils/icono.jpg"
+
+
+
+
+
+
+
+
 
 const ProfilePage = ({ }) => {
 
 
-  const user  = useContext(AuthContext);
-
-
-  if (!user) {
-    return <div>¡Vaya! Parece que no estás logueado. ¡Debes iniciar sesión para ver tu perfil!</div>;
-  }
-
-  const { username, email, avatar } = user || {};
-
-
-
-
-
+  const {user }  = useContext(AuthContext);
+ 
+ 
   return (
     <PageWrapper>
-      <Flex alignItems="center" justifycontent="center" flexDirection="column" marginTop="20px">
-        <Box
-          as="img"
-          src={avatar}
+      <Flex alignItems="center" justifycontent="center" flexDirection="column" marginTop="20px" >
+        <Avatar
+        marginBottom="100px"
+          src={icono}
           borderRadius="full"
-          boxSize="50px"
+          boxSize="300px"
           alt="Avatar"
         />
         <ModalLogic />
-        <Text textAlign="center" marginBottom="10px">
+        <Text textAlign="center" marginBottom="10px" fontSize="60px">
           ¡Bienvenid@ de nuevo!
         </Text>
-        <Text textAlign="center" marginBottom="10px">
+        <Text textAlign="center" marginBottom="10px" fontSize="30px">
           ¿Qué te apetece hacer hoy?
         </Text>
-        <Text textAlign="center" marginBottom="10px">
+        <Text textAlign="center" marginBottom="10px" fontSize="15px">
           <Link to="/safemap">Ir al Safemap</Link>
         </Text>
-        <Text textAlign="center" marginBottom="10px">
+        <Text textAlign="center" marginBottom="10px" fontSize="15px">
           <Link to="/contribuciones">Ver tus contribuciones</Link>
-          <DeleteUser/>
+          
         </Text>
-        <Box
-          as="img"
-          src={ProfilePagePicture}
-          alt="Profile Picture"
-          width="100%"
-          maxWidth="400px"
-          height="auto"
-          marginTop="20px"
-        />
+        <DeleteUserButton/>
 
 
 

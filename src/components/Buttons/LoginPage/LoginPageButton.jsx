@@ -14,7 +14,7 @@ const LoginPageButton = () => {
         fontSize={"20px"}
         marginTop={"30px"}
         borderRadius={"20px"}
-        backgroundColor={"#ff4f5a"}
+        backgroundColor={"#308c67"}
         color={"white"}
       >
         ¡Empieza <br></br> a cambiar el mundo!
