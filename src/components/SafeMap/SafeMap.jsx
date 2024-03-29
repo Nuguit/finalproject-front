@@ -21,18 +21,22 @@ const warnings = useLoaderData();
   const [hoveredMarker, setHoveredMarker] = useState(null);
   const [coordinates, setCoordinates] = useState([]);
   const [activeMarker, setActiveMarker] = useState(null);
+  const [token, setToken] = useState(null);
   
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/profile/safemap');
-        if (!response.ok) {
+        const response = await SafeMapService.getAllWarnings();
+        console.log("RESPONDE", response)
+        if (!response) {
           throw new Error('Error al obtener las coordenadas');
-        }
-        const data = await response.json();
-        setMarkers(data);
-        console.log("LOS DATOS", data)
+        } 
+        //const data = await response.json();
+        
+        setMarkers(response);
+        
+        console.log("LOS DATOS", response)
         
   
         
@@ -46,8 +50,7 @@ const warnings = useLoaderData();
         console.log(error);
       }
     };
-  
-    fetchData();
+    fetchData(); 
   }, []);
   
 
