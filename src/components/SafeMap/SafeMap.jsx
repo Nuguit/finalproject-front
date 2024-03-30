@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import Marker2 from "./Marker2.png";
-import Formulario from './Form/SafeMapForm';
 import { Text } from '@chakra-ui/react';
-import { useLoaderData } from 'react-router-dom';
-import SafeMapService from "../../services/profile.service"
-
+import { Link } from 'react-router-dom';
+import SafeMapService from "../../services/profile.service";
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -15,14 +13,15 @@ function MyMap() {
     id: 'google-map-script',
     googleMapsApiKey: apiKey
   });
-const warnings = useLoaderData();
+
   const [currentLocation, setCurrentLocation] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [hoveredMarker, setHoveredMarker] = useState(null);
   const [coordinates, setCoordinates] = useState([]);
   const [activeMarker, setActiveMarker] = useState(null);
   const [token, setToken] = useState(null);
-  
+  const [warning, setWarning] = useState('');
+  const [doubleClickMarker, setDoubleClickMarker] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +31,6 @@ const warnings = useLoaderData();
         if (!response) {
           throw new Error('Error al obtener las coordenadas');
         } 
-        //const data = await response.json();
         
         setMarkers(response);
         
@@ -75,34 +73,44 @@ const warnings = useLoaderData();
     },
   ]);
   };
+  const handleMapDoubleClick = (event) => {
+    const newMarker = {
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng()
+    };
+    setDoubleClickMarker(newMarker); // Establecer las coordenadas del marcador de doble clic
+  };
+  const handleWarningChange = (event) => {
+    setWarning(event.target.value);
+  };
 
+  const handleSubmit = (event) => {
+    event.preventDefault(); 
+    // Aquí puedes realizar cualquier operación relacionada con el formulario, como enviar los datos al servidor, etc.
+  };
 
   const mapOptions = {
     center: currentLocation,
     zoom: 15,
     onClick: handleMapClick,
+    onDblClick: handleMapDoubleClick,
   };
-
- 
-
-  
-
 
   return isLoaded ? (
     <>
       <GoogleMap
-  mapContainerStyle={{ width: '100%', height: '800px', border: '10px solid green' }}
-  {...mapOptions}
->
-{currentLocation && (
+        mapContainerStyle={{ width: '100%', height: '800px', border: '10px solid green' }}
+        {...mapOptions}
+      >
+        {currentLocation && (
           <Marker
             position={currentLocation}
             icon={Marker2}
           />
         )}
-        {markers.map((marker, id) => (
+        {markers.map((marker, index) => (
           <Marker
-            key={id}
+            key={index}
             position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
             onMouseOver={() => handleMarkerHover(marker)}
             onMouseOut={() => handleMarkerHover(null)}
@@ -113,19 +121,34 @@ const warnings = useLoaderData();
               <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                 <div>{marker.input}</div>
               </InfoWindow>
-           )}
+            )}
           </Marker>
         ))}
+         {doubleClickMarker && ( // Mostrar el marcador de doble clic si existe
+          <Marker
+            position={doubleClickMarker}
+            icon={Marker2}
+          />
+        )}
       </GoogleMap>
 
-       <div>
-              <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"10px"} fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:</Text>
+      <div>
+        <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"10px"} fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:</Text>
+      </div>
 
-            </div>       
+      <form onSubmit={handleSubmit}>
+        <input 
+          style={{ backgroundColor: '#e5e5e5', height: '400px', width:'1000px', marginLeft: '100px', marginBottom: '100px' }}
+          type="text"
+          id="warning"
+          value={warning}
+          onChange={handleWarningChange}
+        />
+        <Link to={"/safemap/added"}>
+          <button type="submit"style={{ color: 'white', backgroundColor: '#308c67', marginLeft: '100px', padding: '10px', borderRadius: '20px', fontSize: '30px' }}>Añadir aviso</button>
+        </Link>
+      </form>
 
-
-
-      <Formulario />
     </>
   ) : (
     <div>Cargando mapa...</div>
@@ -133,4 +156,3 @@ const warnings = useLoaderData();
 }
 
 export default MyMap;
-
