@@ -26,11 +26,19 @@ class SafeMapService extends AxiosConfig {
     return response.data
   }
 
-  async editProfile(data) {
-     const response = await this.axios.put("/tuperfil", data);
-      //console.log("Respuesta de edición de perfil:", response.data);
+  async editProfile(userId, token, data) {
+    try {
+      const response = await this.axios.put(`/tuperfil/${userId}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
+    } catch (error) {
+      console.error('Error al editar perfil:', error);
+      throw error;
     }
+  }
 
   
     async deleteUser(userId, token) {

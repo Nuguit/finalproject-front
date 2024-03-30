@@ -45,6 +45,15 @@ export const AuthProvider = ({ children }) => {
     }
   };
    
+  const editProfile = async (data) => {
+    try {
+      const token = getToken();
+      const updatedUser = await SafeMapService.editProfile(user._id, token, data);
+      setUser(updatedUser);
+    } catch (error) {
+      console.error('Error al editar perfil:', error);
+    }
+  };
 
   const logout = (e) => {
     if (e) e.preventDefault()
@@ -73,7 +82,7 @@ export const AuthProvider = ({ children }) => {
   
 
   return (
-    <AuthContext.Provider value={{ user,setUser, logout, login, isLoading, deleteUser }}>
+    <AuthContext.Provider value={{ user,setUser, editProfile, logout, login, isLoading, deleteUser }}>
       {children}
     </AuthContext.Provider>
   )

@@ -15,7 +15,8 @@ import deleteuserpic from "../../../utils/deleteuserpic.png"
 
 const LoggedNavbar = () => {
   
-    const { user, logout, deleteUser } = useContext(AuthContext)
+  const { user, logout, deleteUser } = useContext(AuthContext)
+  const username = user?.username;
   const NAVIGATION_LINK = [
     {
       link: "/tuperfil",
@@ -25,7 +26,6 @@ const LoggedNavbar = () => {
     
     
   ]
-
   const location = useLocation()
 
   return (
