@@ -9,15 +9,13 @@ import { useToast } from '@chakra-ui/react';
 
 const DeleteUserButton = () => {
   const { user, setUser } = useContext(AuthContext); 
-  console.log("Valor de user:", user);
-  console.log("Tipo de setUser:", typeof setUser);
   const userId = user?.user?._id;
   const toast = useToast();
   const navigate = useNavigate();
 
 
 
-  console.log("SUPUESTO FALLO", userId)
+  
 const handleDeleteUser = async () => {
   try {
     const token = localStorage.getItem("token"); 

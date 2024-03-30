@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Marker2 from "./Marker2.png";
 import { Text } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import SafeMapService from "../../services/profile.service";
+import SafeMapService from "../../services/profile.service"
+import WarningService from "../../services/safemap.service"
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -16,28 +18,20 @@ function MyMap() {
 
   const [currentLocation, setCurrentLocation] = useState(null);
   const [markers, setMarkers] = useState([]);
-  const [hoveredMarker, setHoveredMarker] = useState(null);
-  const [coordinates, setCoordinates] = useState([]);
-  const [activeMarker, setActiveMarker] = useState(null);
-  const [token, setToken] = useState(null);
   const [warning, setWarning] = useState('');
-  const [doubleClickMarker, setDoubleClickMarker] = useState(null);
+  const [clickedMarker, setClickedMarker] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await SafeMapService.getAllWarnings();
-        console.log("RESPONDE", response)
+        const response = await WarningService.getAllWarnings();
         if (!response) {
           throw new Error('Error al obtener las coordenadas');
         } 
         
         setMarkers(response);
-        
-        console.log("LOS DATOS", response)
-        
   
-        
         navigator.geolocation.getCurrentPosition((position) => {
           setCurrentLocation({
             lat: position.coords.latitude,
@@ -50,50 +44,51 @@ function MyMap() {
     };
     fetchData(); 
   }, []);
-  
 
-  const handleMarkerClick = (marker) => {
-    setActiveMarker(marker);
-  };
-
-  const handleMarkerHover = (marker) => {
-    setHoveredMarker(marker);
-  };
   const handleMapClick = (event) => {
     const newMarker = {
       lat: event.latLng.lat(),
       lng: event.latLng.lng()
     };
-    setMarkers([...markers, {
-      input: "test",
-      location: {
-        type: "Point",
-        coordinates: [newMarker.lng, newMarker.lat],
-      }, 
-    },
-  ]);
-  };
-  const handleMapDoubleClick = (event) => {
-    const newMarker = {
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng()
-    };
-    setDoubleClickMarker(newMarker); // Establecer las coordenadas del marcador de doble clic
-  };
-  const handleWarningChange = (event) => {
-    setWarning(event.target.value);
+    setClickedMarker(newMarker);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); 
-    // Aquí puedes realizar cualquier operación relacionada con el formulario, como enviar los datos al servidor, etc.
+  const handleWarningChange = (event) => {
+    const inputValue = event.target.value;
+    setWarning(inputValue);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const warningdata = {
+        input: warning,
+        location: {
+          type: "Point",
+          coordinates: [clickedMarker.lng, clickedMarker.lat],
+        } 
+      };
+      console.log(warningdata)
+      const token = localStorage.getItem("token");
+      console.log("TOKENCITO", token)
+      const response = await WarningService.createWarning(token, warningdata);
+        
+      
+      console.log ("RESPUESTA", response)
+      if (response.status === 201) {
+        navigate("/safemap/added");
+      }
+  
+      setWarning('');
+      setClickedMarker(null);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const mapOptions = {
     center: currentLocation,
     zoom: 15,
     onClick: handleMapClick,
-    onDblClick: handleMapDoubleClick,
   };
 
   return isLoaded ? (
@@ -112,21 +107,12 @@ function MyMap() {
           <Marker
             key={index}
             position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
-            onMouseOver={() => handleMarkerHover(marker)}
-            onMouseOut={() => handleMarkerHover(null)}
             icon={Marker2}
-            onClick={() => handleMarkerClick(marker)}
-          >
-            {activeMarker === marker && (
-              <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                <div>{marker.input}</div>
-              </InfoWindow>
-            )}
-          </Marker>
+          />
         ))}
-         {doubleClickMarker && ( // Mostrar el marcador de doble clic si existe
+        {clickedMarker && (
           <Marker
-            position={doubleClickMarker}
+            position={clickedMarker}
             icon={Marker2}
           />
         )}
@@ -136,7 +122,7 @@ function MyMap() {
         <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"10px"} fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:</Text>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form>
         <input 
           style={{ backgroundColor: '#e5e5e5', height: '400px', width:'1000px', marginLeft: '100px', marginBottom: '100px' }}
           type="text"
@@ -144,9 +130,7 @@ function MyMap() {
           value={warning}
           onChange={handleWarningChange}
         />
-        <Link to={"/safemap/added"}>
-          <button type="submit"style={{ color: 'white', backgroundColor: '#308c67', marginLeft: '100px', padding: '10px', borderRadius: '20px', fontSize: '30px' }}>Añadir aviso</button>
-        </Link>
+        <button onClick={handleSubmit} type="button" style={{ color: 'white', backgroundColor: '#308c67', marginLeft: '100px', padding: '10px', borderRadius: '20px', fontSize: '30px' }}>Añadir aviso</button>
       </form>
 
     </>
@@ -156,3 +140,4 @@ function MyMap() {
 }
 
 export default MyMap;
+

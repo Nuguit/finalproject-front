@@ -30,11 +30,23 @@ export const AuthProvider = ({ children }) => {
       console.log("Error al recuperar el usuario:", error);
     } finally {
       setIsLoading(false);
-    } 
+    } }
+    
+   
+    const createWarning = async (warningdata) => {
+      try {
+        const token = localStorage.getItem('token'); 
+        const response = await SafeMapService.createWarning(token, warningdata); 
+        return response;
+      } catch (error) {
+        console.error('Error al crear advertencia:', error);
+        throw error;
+      }}
 
-  
-  }
-  
+
+
+
+
   const deleteUser = async () => {
     try {
       await authService.deleteUser(); 
@@ -44,7 +56,7 @@ export const AuthProvider = ({ children }) => {
       console.error("Error al eliminar usuario:", error);
     }
   };
-   
+  
   const editProfile = async (data) => {
     try {
       const token = getToken();
@@ -55,6 +67,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  
   const logout = (e) => {
     if (e) e.preventDefault()
     localStorage.removeItem("token")
@@ -62,6 +75,7 @@ export const AuthProvider = ({ children }) => {
     navigate("/login")
   }
 
+  
   const login = async (userData) => {
     try {
       const { token } = await authService.login(userData)
@@ -71,18 +85,18 @@ export const AuthProvider = ({ children }) => {
       navigate("/tuperfil")
     } catch (error) {
       console.log("ERROR", error)
-    }
-  };
-  
-
-  useEffect(() => {
-    getUser()
-  }, [])
-
+    }}
+    
+    
+    
+    useEffect(() => {
+      getUser()
+    }, [])
+    
   
 
   return (
-    <AuthContext.Provider value={{ user,setUser, editProfile, logout, login, isLoading, deleteUser }}>
+    <AuthContext.Provider value={{ user,setUser, editProfile, logout, login, isLoading, createWarning, deleteUser }}>
       {children}
     </AuthContext.Provider>
   )
