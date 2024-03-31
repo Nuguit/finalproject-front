@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Marker2 from "./Marker2.png";
 import { Text } from '@chakra-ui/react';
@@ -21,11 +21,13 @@ function MyMap() {
   const [warning, setWarning] = useState('');
   const [clickedMarker, setClickedMarker] = useState(null);
   const navigate = useNavigate();
+  const {createWarning} = useContext(AuthContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await WarningService.getAllWarnings();
+        console.log("RESPONSE", response);
         if (!response) {
           throw new Error('Error al obtener las coordenadas');
         } 
@@ -39,8 +41,8 @@ function MyMap() {
           });
         });
       } catch (error) {
-        console.log(error);
-      }
+        console.log("FETCH ERROR", error);
+              }
     };
     fetchData(); 
   }, []);
@@ -50,30 +52,35 @@ function MyMap() {
       lat: event.latLng.lat(),
       lng: event.latLng.lng()
     };
+    console.log("CLICKED MARKER", newMarker);
     setClickedMarker(newMarker);
   };
 
   const handleWarningChange = (event) => {
     const inputValue = event.target.value;
+
+    console.log("WARNING INPUT", inputValue);
     setWarning(inputValue);
   };
 
   const handleSubmit = async () => {
     try {
-      const warningdata = {
-        input: warning,
-        location: {
-          type: "Point",
-          coordinates: [clickedMarker.lng, clickedMarker.lat],
-        } 
-      };
-      console.log(warningdata)
+      console.log("SUBMITTING");
+      if (!clickedMarker) {
+        throw new Error('Debes seleccionar una ubicación en el mapa.');
+      }
+
       const token = localStorage.getItem("token");
-      console.log("TOKENCITO", token)
-      const response = await WarningService.createWarning(token, warningdata);
+      console.log("TOKEN", token);
+      console.log("WARNING", warning);
+      console.log("CLICKED MARKER", clickedMarker);
+
+      const response = await WarningService.createWarning(token, {
+        input: warning,
+        markerCoordinates: [clickedMarker.lng, clickedMarker.lat]
+      });
         
-      
-      console.log ("RESPUESTA", response)
+      console.log("RESPUESTA", response);
       if (response.status === 201) {
         navigate("/safemap/added");
       }
@@ -84,6 +91,7 @@ function MyMap() {
       console.error('Error:', error);
     }
   };
+
 
   const mapOptions = {
     center: currentLocation,
