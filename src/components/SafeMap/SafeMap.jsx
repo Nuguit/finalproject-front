@@ -3,7 +3,6 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Marker2 from "./Marker2.png";
 import { Text } from '@chakra-ui/react';
 import SafeMapService from "../../services/profile.service"
-import WarningService from "../../services/safemap.service"
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -15,18 +14,20 @@ function MyMap() {
     id: 'google-map-script',
     googleMapsApiKey: apiKey
   });
+  
 
   const [currentLocation, setCurrentLocation] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [warning, setWarning] = useState('');
   const [clickedMarker, setClickedMarker] = useState(null);
   const navigate = useNavigate();
-  const {createWarning} = useContext(AuthContext);
+  const {createWarning , getAllWarnings} = useContext(AuthContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await WarningService.getAllWarnings();
+        const token = localStorage.getItem("token")
+        const response = await SafeMapService.getAllWarnings(token); // Usa getAllWarnings del contexto de autenticación
         console.log("RESPONSE", response);
         if (!response) {
           throw new Error('Error al obtener las coordenadas');
@@ -42,10 +43,11 @@ function MyMap() {
         });
       } catch (error) {
         console.log("FETCH ERROR", error);
-              }
+      }
     };
+
     fetchData(); 
-  }, []);
+  }, [getAllWarnings]);
 
   const handleMapClick = (event) => {
     const newMarker = {
@@ -75,7 +77,7 @@ function MyMap() {
       console.log("WARNING", warning);
       console.log("CLICKED MARKER", clickedMarker);
 
-      const response = await WarningService.createWarning(token, {
+      const response = await SafeMapService.createWarning(token, {
         input: warning,
         markerCoordinates: [clickedMarker.lng, clickedMarker.lat]
       });
@@ -95,9 +97,11 @@ function MyMap() {
 
   const mapOptions = {
     center: currentLocation,
-    zoom: 15,
+    zoom: 4,
     onClick: handleMapClick,
   };
+
+
 
   return isLoaded ? (
     <>
@@ -108,7 +112,7 @@ function MyMap() {
         {currentLocation && (
           <Marker
             position={currentLocation}
-            icon={Marker2}
+            
           />
         )}
         {markers.map((marker, index) => (
