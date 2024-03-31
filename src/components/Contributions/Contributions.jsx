@@ -30,7 +30,7 @@ function ContributionsComponent() {
     <div >
       <p style={{ fontSize: '50px' }}>Aquí están tus contribuciones:</p>
       {warnings.length > 0 ? (
-        <ol style={{ paddingTop: '150px', paddingBottom: '150px', fontSize: '25px', display: 'flex', justifyContent: 'center' }}>
+        <ol style={{ flexDirection: "column", paddingTop: '150px', paddingBottom: '150px', fontSize: '25px', display: 'flex', justifyContent: 'center' }}>
           {warnings.map((warning, index) => (
             <li key={index}>
               <p> {warning.input}</p>

@@ -6,7 +6,7 @@ import { useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import DeleteUserButton from "../../components/DeleteUser/DeleteUser"
 import icono from "../../utils/icono.jpg"
-
+import ImageUploader from "../../components/Navbar/LoggedNavBar/imageUploader"
 
 
 
@@ -24,12 +24,7 @@ const ProfilePage = ({ }) => {
   return (
     <PageWrapper>
       <Flex alignItems="center" justifycontent="center" flexDirection="column" marginTop="20px" >
-        <Avatar
-        marginBottom="100px"
-          src={icono}
-          borderRadius="full"
-          boxSize="300px"
-          alt="Avatar"
+        <ImageUploader
         />
         <ModalLogic />
         <Text textAlign="center" marginBottom="10px" fontSize="60px">

@@ -1,89 +1,65 @@
-import { Flex, Text } from "@chakra-ui/layout"
+import { Flex, Text, Image, Box } from "@chakra-ui/react"
 import { useLocation } from "react-router-dom"
-import CustomLink from "../../CustomLink/CustomLink"
 import { useContext } from "react"
 import { AuthContext } from "../../../contexts/AuthContext"
-import { Image, flexbox } from '@chakra-ui/react'
-import icono from "../../../utils/icono.jpg"
 import NavigationLink from "../../NavigationLink/NavigationLink"
-import SafeWalkNavbar from "./SafeWalkNavbar.png"
 import off from "./off.png"
+import icono from "../../../utils/icono.jpg"
+import SafeWalkNavbar from "./SafeWalkNavbar.png"
 import { Link } from "react-router-dom"
-import { Box } from "@chakra-ui/react"
-import deleteuserpic from "../../../utils/deleteuserpic.png"
+import CustomLink from "../../CustomLink/CustomLink"
+import ImageUploader from "./imageUploader"
+
 
 
 const LoggedNavbar = () => {
-  
-  const { user, logout, deleteUser } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
   const username = user?.username;
   const NAVIGATION_LINK = [
     {
       link: "/tuperfil",
       text: user ? `¡Hola, ${user.user.username}!` : "¡Hola!"
-      
-    },
-    
-    
+    }
   ]
   const location = useLocation()
 
   return (
-
-    (
-      <Flex
-        padding={"34px 80px"}
-        justifycontent={"space-between"}
-        alignItems="center"
-        backgroundColor={"#308c67"}
-        color={"white"}
-      >
-        <Image justifycontent={"left"} src={SafeWalkNavbar} width={"300px"} height={"50px"} alt="SafeWalk Navbar" />
-    
-        <Flex gap={"34px"}>
-          {NAVIGATION_LINK.map(({ link, text }) => {
-            const isActiveLink = location.pathname === link;
-            return (
-              <NavigationLink alignItems="center" 
-                to={link}
-                key={text}
-              >
-                <Text>{text}</Text>
-              </NavigationLink>
-            );
-          })}
-    
-          <Box width="200px" height="60px" display="flex" alignItems="center"> 
-            <Link to="/">
-              <Image
-                borderRadius="full"
-                boxSize="100px"
-                src={off}
-                alt="Cerrar sesión"
-                onClick={logout}
-              />
-            </Link>
-          </Box>
-        </Flex>
-    
-        
-
-
-
-
-        <Flex>        
-          <CustomLink to="/">
-            <Image
-              borderRadius="full"
-              boxSize="50px"
-              src={icono}
-              alt="SafeWalk"
-            />
-          </CustomLink>
-        </Flex>
+    <Flex
+      direction={{ base: "column", md: "row" }} // Columna en dispositivos móviles, fila en dispositivos medianos y grandes
+      padding={{ base: "20px", md: "34px 80px" }} // Menos relleno en dispositivos móviles
+      backgroundColor={"#308c67"}
+      color={"white"}
+      alignItems="center" // Alinea los elementos verticalmente
+      justifyContent="space-between" // Espacio uniforme entre los elementos
+    >
+      <Flex alignItems="center" gap="4">
+        <Image src={SafeWalkNavbar} width={{ base: "200px", md: "300px" }} height="50px" alt="SafeWalk Navbar" />
+        {NAVIGATION_LINK.map(({ link, text }) => (
+          <NavigationLink to={link} key={text}>
+            <Text>{text}</Text>
+          </NavigationLink>
+        ))}
       </Flex>
-    ))}
-      
-  
 
-      export default LoggedNavbar
+      <Box>
+        <Link to="/">
+          <Image
+            borderRadius="full"
+            boxSize={{ base: "50px", md: "100px" }} // Tamaño más pequeño en dispositivos móviles
+            src={off}
+            alt="Cerrar sesión"
+            onClick={logout}
+          />
+        </Link>
+      </Box>
+
+      <Flex>
+        
+          <ImageUploader/>
+        
+      </Flex>
+    </Flex>
+  )
+}
+
+export default LoggedNavbar

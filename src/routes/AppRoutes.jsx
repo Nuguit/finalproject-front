@@ -12,7 +12,7 @@ import SafeMapPage  from "../pages/SafeMapPage/SafeMapPage"
 import SafeMapAdded from "../pages/SafeMapAddedPage/SafeMapAdded"
 import  ContributionPage  from "../pages/Contributions/ContributionPage"
 
-import loaderContributions from "../components/Contributions/loaderContributions"
+
 
 const AppRoutes = () => {
   const router = createBrowserRouter([
