@@ -84,7 +84,7 @@ function MyMap() {
         
       console.log("RESPUESTA", response);
       if (response.status === 201) {
-        navigate("/safemap/added");
+        navigate("http://localhost:3000/profile/safemap/added");
       }
   
       setWarning('');

@@ -44,7 +44,18 @@ export const AuthProvider = ({ children }) => {
       }}
 
 
-
+      const contributions = async()=> {
+        try{
+          const token = getToken();
+          const response = await SafeMapService.contributions(user._id, token);
+          console.log("CARACOLI", response)
+          return response;
+        }catch (error) {
+          console.error("Error al recuperar contribuciones:", error);
+          throw error;
+        }
+      };
+      
 
 
   const deleteUser = async () => {
@@ -57,10 +68,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
   
-  const editProfile = async (data) => {
+  const editProfile = async () => {
     try {
       const token = getToken();
-      const updatedUser = await SafeMapService.editProfile(user._id, token, data);
+      const updatedUser = await SafeMapService.editProfile(user._id, token);
       setUser(updatedUser);
     } catch (error) {
       console.error('Error al editar perfil:', error);
@@ -96,7 +107,7 @@ export const AuthProvider = ({ children }) => {
   
 
   return (
-    <AuthContext.Provider value={{ user,setUser, editProfile, logout, login, isLoading, createWarning, deleteUser }}>
+    <AuthContext.Provider value={{ user,setUser, contributions, editProfile, logout, login, isLoading, createWarning, deleteUser }}>
       {children}
     </AuthContext.Provider>
   )

@@ -48,7 +48,7 @@ const AppRoutes = () => {
             <AuthMiddleware>
                <ContributionPage />  
              </AuthMiddleware> ), 
-             loader: loaderContributions,
+             
           
         },
 

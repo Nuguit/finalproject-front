@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useContext } from 'react';
 import SafeMapService from '../../services/profile.service';
 import { Flex , Text } from '@chakra-ui/react';
+import { AuthContext } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
+
 
 function ContributionsComponent() {
   const [warnings, setWarnings] = useState([]);
-
+  const { user, setUser } = useContext(AuthContext);
+  const userId = user?.user?._id;
   useEffect(() => {
     const fetchWarnings = async () => {
       try {
-        const warningsData = await SafeMapService.contributions();
+        const token = localStorage.getItem("token")
+        const warningsData = await SafeMapService.contributions(userId, token);
         console.log("WARNINGSOWNER", warningsData)
         setWarnings(warningsData);
         console.log("WARNINGSDATA", warningsData)

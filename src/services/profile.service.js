@@ -7,11 +7,19 @@ class SafeMapService extends AxiosConfig {
 
  
 
-  async contributions(){
-    const response = await this.axios.get("/contribuciones")
+  async contributions(userId, token){
+    try{
+    const response = await this.axios.get(`/contribuciones/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }  )
     console.log(response.data)
     return response.data
+  } catch(error){
+    console.error ("Error al recuperar los warnings:", error)
   }
+}
 
 
     
@@ -88,10 +96,7 @@ class SafeMapService extends AxiosConfig {
     }
   };
    
-  
-  
-  
-  
+
   
   
   
