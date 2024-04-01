@@ -12,7 +12,7 @@ function AboutUs() {
   return (
     <PageWrapper>
       <Flex flexDir={"column"}>
-        <img src={SafeWalkTitle} height={"100%"} width={"100%"}></img>
+        <img src={SafeWalkTitle} height={"60%"} width={"60%"}></img>
         <Text fontStyle={"italic"} textAlign={"center"} fontSize={"60px"}>¿Quiénes somos?</Text>
         <Text color="#3fa142" paddingTop={"100px"} fontStyle={"italic"} textAlign={"center"} fontSize={"40px"}>"El valor de una idea radica en el uso de la misma"</Text>
         <Text paddingTop={"60px"} fontStyle={"italic"} paddingRight={"300px"} textAlign={"right"} fontSize={"20px"}>Thomas Edison</Text>

@@ -28,8 +28,9 @@ function Formulario() {
           onChange={handleWarningChange}
         />
       
-      <Link to={"/safemap/added"}>
-      <button type="submit"style={{ color: 'white', backgroundColor: '#308c67', marginLeft: '100px', padding: '10px', borderRadius: '20px', fontSize: '30px' }}>Añadir aviso</button></Link>
+      <Link to="/safemap/added">
+  <button type="button" style={{ color: 'white', backgroundColor: '#308c67', marginLeft: '100px', padding: '10px', borderRadius: '20px', fontSize: '30px' }}>Añadir aviso</button>
+</Link>
     </form>
   );
 }

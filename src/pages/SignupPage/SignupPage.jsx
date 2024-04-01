@@ -1,7 +1,6 @@
 import React, {  useState } from "react"
 import FormSignupLayout from "../../components/FormPagesLayout/FormSignupLayout"
 import CustomForm from "../../components/CustomForm/CustomForm"
-import { AuthContext } from "../../contexts/AuthContext"
 import { Flex, useToast } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
 import SignupPicture from "./SignupPicture.jpg"

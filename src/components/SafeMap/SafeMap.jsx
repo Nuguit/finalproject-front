@@ -6,6 +6,7 @@ import SafeMapService from "../../services/profile.service"
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { Flex } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -160,21 +161,23 @@ function MyMap() {
           value={warning}
           onChange={handleWarningChange}
         />
-        <button 
-          onClick={handleSubmit} 
-          type="button" 
-          style={{ 
-            color: 'white', 
-            backgroundColor: '#308c67', 
-            marginLeft: { base: '10px', md: '100px' },
-            marginRight: { base: '10px', md: '100px' },
-            padding: '10px', 
-            borderRadius: '20px', 
-            fontSize: { base: '20px', md: '30px' }
-          }}
-        >
-          Añadir aviso
-        </button>
+        <Link to="/safemap/added">
+  <button 
+    onClick={handleSubmit} 
+    type="button" 
+    style={{ 
+      color: 'white', 
+      backgroundColor: '#308c67', 
+      marginLeft: { base: '10px', md: '100px' },
+      marginRight: { base: '10px', md: '100px' },
+      padding: '10px', 
+      borderRadius: '20px', 
+      fontSize: { base: '20px', md: '30px' }
+    }}
+  >
+    Añadir aviso
+  </button>
+</Link>
       </form>
     </>
   ) : (
