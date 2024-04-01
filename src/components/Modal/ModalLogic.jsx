@@ -21,15 +21,19 @@ const ModalLogic = () => {
   const toast = useToast();
   const userId = user?.user?._id;
   
-
+  const ParentComponent = () => {
+    const [showModal, setShowModal] = useState(false)};
+  
+    const handleOpenModal = () => {
+      setShowModal(true)};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditProfileData({ ...editProfileData, [name]: value });
   };
 
-  const handleAvatarChange = (imageUrl) => { // Modificar para recibir directamente la URL de la imagen
-    setEditProfileData({ ...editProfileData, avatar: imageUrl }); // Actualizar el estado con la URL de la imagen
+  const handleAvatarChange = (imageUrl) => { 
+    setEditProfileData({ ...editProfileData, avatar: imageUrl }); 
   };
 
   const handleSubmit = async (e) => {
@@ -37,10 +41,8 @@ const ModalLogic = () => {
     try {
       console.log('Submitting form...');
           
-        console.log("HOLI UNO Y DOS", editProfileData)
-        console.log("SOY TU AMIGO USER", userId)
         const updatedProfile = await SafeMapService.editProfile(userId, editProfileData);
-        onClose(); // Cerrar la modal después de enviar el formulario
+        setShowModal(false) 
         setUser(updatedProfile);
         toast({
           title: '¡Perfil actualizado!',
@@ -77,8 +79,9 @@ const ModalLogic = () => {
 
   return (
     <div>
-      <ProfileDetails onOpen={onOpen} profileDetails={PROFILE_DETAILS} />
-      <ModalEdi isOpen={isOpen} onClose={onClose} >
+      <ProfileDetails showModal={showModal}
+        onOpen={handleOpenModal} profileDetails={PROFILE_DETAILS} />
+      <ModalEdi isOpen={showModal} onClose={() => setShowModal(false)} >
         <CustomForm options={PROFILE_OPTIONS} onChange={handleChange} onSubmit={handleSubmit} title={'Edita tu perfil'}>
           <UploaderImage onChange={handleAvatarChange} />
         </CustomForm>

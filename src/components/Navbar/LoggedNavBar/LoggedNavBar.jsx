@@ -1,26 +1,24 @@
-import { Flex, Text, Image, Box } from "@chakra-ui/react"
-import { useLocation } from "react-router-dom"
-import { useContext } from "react"
-import { AuthContext } from "../../../contexts/AuthContext"
-import NavigationLink from "../../NavigationLink/NavigationLink"
-import off from "./off.png"
-import icono from "../../../utils/icono.jpg"
-import SafeWalkNavbar from "./SafeWalkNavbar.png"
-import { Link } from "react-router-dom"
-import CustomLink from "../../CustomLink/CustomLink"
-import ImageUploader from "./imageUploader"
+import { Flex, Text, Image, Box } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthContext";
+import NavigationLink from "../../NavigationLink/NavigationLink";
+import off from "./off.png";
+import SafeWalkNavbar from "./SafeWalkNavbar.png";
+import { Link } from "react-router-dom";
+import ImageUploader from "./imageUploader";
 
 const LoggedNavbar = () => {
-  const { user, logout } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext);
   const username = user.user?.username;
-  console.log("LOGG", user)
+  console.log("LOGG", user);
   const NAVIGATION_LINK = [
     {
       link: "/tuperfil",
       text: user ? `¡Hola, ${user.user.username}!` : "¡Hola!"
     }
-  ]
-  const location = useLocation()
+  ];
+  const location = useLocation();
 
   return (
     <Flex
@@ -40,7 +38,7 @@ const LoggedNavbar = () => {
         ))}
       </Flex>
 
-      <Flex alignItems="center" gap="15px"> {/* Alinea los elementos horizontalmente con espacio de 15px entre ellos */}
+      <Flex alignItems="center" gap="15px" flexWrap="wrap"> 
         <Flex>
           <ImageUploader />
         </Flex>
@@ -58,7 +56,7 @@ const LoggedNavbar = () => {
         </Box>
       </Flex>
     </Flex>
-  )
-}
+  );
+};
 
-export default LoggedNavbar
+export default LoggedNavbar;
