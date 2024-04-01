@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import Marker2 from "./Marker2.png";
 import { Text } from '@chakra-ui/react';
 import SafeMapService from "../../services/profile.service"
@@ -24,12 +24,14 @@ function MyMap() {
   const [clickedMarker, setClickedMarker] = useState(null);
   const navigate = useNavigate();
   const {createWarning , getAllWarnings} = useContext(AuthContext);
+  const [hoveredMarker, setHoveredMarker] = useState(null);
+  const [hoveredMarkerIndex, setHoveredMarkerIndex] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token")
-        const response = await SafeMapService.getAllWarnings(token) // Usa getAllWarnings del contexto de autenticación
+        const response = await SafeMapService.getAllWarnings(token) 
         if (!response) {
           throw new Error("Error al obtener las coordenadas")
         }
@@ -43,7 +45,7 @@ function MyMap() {
           })
         })
       } catch (error) {
-        console.log("FETCH ERROR", error)
+        
       }
     }
 
@@ -55,29 +57,24 @@ function MyMap() {
       lat: event.latLng.lat(),
       lng: event.latLng.lng()
     };
-    console.log("CLICKED MARKER", newMarker);
+    
     setClickedMarker(newMarker);
   };
 
   const handleWarningChange = (event) => {
     const inputValue = event.target.value;
 
-    console.log("WARNING INPUT", inputValue);
     setWarning(inputValue);
   };
 
   const handleSubmit = async () => {
     try {
-      console.log("SUBMITTING");
       if (!clickedMarker) {
         throw new Error('Debes seleccionar una ubicación en el mapa.');
       }
 
       const token = localStorage.getItem("token");
-      console.log("TOKEN", token);
-      console.log("WARNING", warning);
-      console.log("CLICKED MARKER", clickedMarker);
-
+      
       const response = await SafeMapService.createWarning(token, {
         input: warning,
         markerCoordinates: [clickedMarker.lng, clickedMarker.lat]
@@ -94,7 +91,13 @@ function MyMap() {
       console.error('Error:', error);
     }
   };
+  const handleMarkerMouseOver = (marker) => {
+    setHoveredMarker(marker);
+  };
 
+  const handleMarkerMouseOut = () => {
+    setHoveredMarker(null);
+  };
 
   const mapOptions = {
     center: currentLocation,
@@ -107,29 +110,53 @@ function MyMap() {
   return isLoaded ? (
     <>
       <Flex justifyContent={"flex-end"}>
-        <GoogleMap
-          mapContainerStyle={{ width: '100%', height: '800px', border: '30px solid #308c67'}}
-          {...mapOptions}
-        >
-          {currentLocation && (
-            <Marker
-              position={currentLocation}
-            />
-          )}
-          {markers.map((marker, index) => (
-            <Marker
-              key={index}
-              position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
-              icon={Marker2}
-            />
-          ))}
-          {clickedMarker && (
-            <Marker
-              position={clickedMarker}
-              icon={Marker2}
-            />
-          )}
-        </GoogleMap>
+      <GoogleMap
+        mapContainerStyle={{ width: '100%', height: '800px', border: '30px solid #308c67'}}
+        {...mapOptions}
+      >
+        {currentLocation && (
+          <Marker
+            position={currentLocation}
+          />
+        )}
+        {markers.map((marker, index) => (
+          <Marker
+            key={index}
+            position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
+            icon={Marker2}
+            onMouseOver={() => setHoveredMarker(marker)} // Establecer el marcador sobre el que se pasa el mouse
+            onMouseOut={() => setHoveredMarker(null)} // Restablecer el marcador cuando se quita el mouse
+          />
+        ))}
+        {clickedMarker && (
+          <Marker
+            position={clickedMarker}
+            icon={Marker2}
+          />
+        )}
+
+        {/* Infowindow */}
+        {hoveredMarker && (
+          <InfoWindow
+            position={{ lat: hoveredMarker.location.coordinates[1], lng: hoveredMarker.location.coordinates[0] }}
+            onCloseClick={() => setHoveredMarker(null)}
+          >
+            <div style={{ backgroundColor: '#308c67', padding: 8 }}>
+              <input 
+                style={{ 
+                  backgroundColor: '#e5e5e5',
+                  height: '100px',
+                  width: '200px',
+                }}
+                type="text"
+                id="warning"
+                value={hoveredMarker.input}
+                readOnly  
+              />
+            </div>
+          </InfoWindow>
+        )}
+      </GoogleMap>
       </Flex>
   
       <div>
