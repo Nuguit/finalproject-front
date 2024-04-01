@@ -141,12 +141,14 @@ function MyMap() {
             position={{ lat: hoveredMarker.location.coordinates[1], lng: hoveredMarker.location.coordinates[0] }}
             onCloseClick={() => setHoveredMarker(null)}
           >
-            <div style={{ backgroundColor: '#308c67', padding: 8 }}>
+            <div style={{ backgroundColor: '#308c67', padding: 8}}>
               <input 
                 style={{ 
                   backgroundColor: '#e5e5e5',
-                  height: '100px',
-                  width: '200px',
+                  height: '50px',
+                  width: '250px',
+                  overflow: 'auto',
+                  wordWrap: 'break-word'
                 }}
                 type="text"
                 id="warning"
