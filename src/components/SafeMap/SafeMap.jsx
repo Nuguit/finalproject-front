@@ -98,14 +98,14 @@ function MyMap() {
     center: currentLocation,
     zoom: 4,
     onClick: handleMapClick,
+  
   };
 
 
-
   return isLoaded ? (
-    <>
+  <>
       <GoogleMap
-        mapContainerStyle={{ width: '100%', height: '800px', border: '10px solid green' }}
+        mapContainerStyle={{ width: '800px', height: '800px', border: '30px solid #308c67' }}
         {...mapOptions}
       >
         {currentLocation && (
