@@ -6,43 +6,40 @@ import TurnMainPage from '../../components/Buttons/SafeMapAddedPage/TurnMainPage
 import TurnSafeMap from '../../components/Buttons/SafeMapAddedPage/TurnSafeMap'
 import SafeMapAddedPicture from "./SafeMapAddedPicture.jpg"
 import { Link } from 'react-router-dom'
+import { Image } from '@chakra-ui/react'
 
 
 const SafeMapAdded = () => {
   return (
-    <Flex flexDir={"column"} >
-        
-       <Box display={"flex"} width={"80%"}  height={"80%"} textAlign={"center"} backgroundColor={"blue"} paddingTop={"100px"} ><img src={SafeMapTitle}></img></Box>
+    <Flex flexDir="column" alignItems="center">
+      <Box width={{ base: '60%', md: '40%' }} textAlign="center" paddingTop="10px">
+        <Image src={SafeMapTitle} />
+      </Box>
 
-        < Flex textAlign={"center"} justifycontent={"center"}>
-        <Text paddingTop={"100px"} fontSize={"40px"}>
-        ¡Gracias! <br></br>
-        Tu aviso ha sido añadido al SafeMap con éxito.
-        </Text> </Flex>
-        
-      
-       <Text paddingTop={"200px"} textAlign={"center"} fontSize={"40px"}>¿Qué te apetece hacer ahora?</Text>
-       <Flex display={"flex"} justifycontent={"center"}  paddingBottom={"100px"} width={"100%"}>
-       <Link to= "/"><TurnMainPage /></Link>
-        <Box width="100px" />
-        <Link to= "/safemap"><TurnSafeMap /></Link>
-       </Flex>
-       <img src={SafeMapAddedPicture}></img>
-      
-            
-         
-        
-        
-        
-        
+      <Flex textAlign="center" justifyContent="center">
+        <Text paddingTop="50px" fontSize={{ base: '30px', md: '40px' }}>
+          ¡Gracias! <br />
+          Tu aviso ha sido añadido al SafeMap con éxito.
+        </Text>
+      </Flex>
 
+      <Text paddingTop="50px" textAlign="center" fontSize={{ base: '30px', md: '40px' }}>
+        ¿Qué te apetece hacer ahora?
+      </Text>
 
+      <Flex justifyContent="center" paddingBottom="100px">
+        <Link to="/">
+          <TurnMainPage />
+        </Link>
+        <Box width="50px" />
+        <Link to="/safemap">
+          <TurnSafeMap />
+        </Link>
+      </Flex>
 
-
-
+      <Image src={SafeMapAddedPicture} maxWidth="40%"/>
     </Flex>
-  )
-}
+  );
+};
 
-
-export default SafeMapAdded
+export default SafeMapAdded;

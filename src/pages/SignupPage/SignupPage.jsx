@@ -3,9 +3,10 @@ import FormSignupLayout from "../../components/FormPagesLayout/FormSignupLayout"
 import CustomForm from "../../components/CustomForm/CustomForm"
 import { Flex, useToast } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
-import SignupPicture from "./SignupPicture.jpg"
+import SignupPicture from "./SignUpPicture.png"
 import authService from "../../services/auth.service"
 import { Box } from "@chakra-ui/react"
+import { Image } from "@chakra-ui/react"
 
 
 const SignupPage = () => {
@@ -28,8 +29,8 @@ const SignupPage = () => {
     try {
       await authService.signup(userData)
       toast({
-        title: "Account created.",
-        description: "We've created your account for you.",
+        title: "Enhorabuena!",
+        description: "Ya tienes una cuenta en SafeWalk :)",
         status: "success",
         duration: 5000,
         isClosable: true,
@@ -40,35 +41,27 @@ const SignupPage = () => {
     }
   }
 
-  return (
-    <Flex display={"flex"}>
-
-<Flex height={"50%"} width={"50%"}><img src={SignupPicture} ></img></Flex>
-
-    <FormSignupLayout>
-      
-      <Box paddingLeft={"200px"}>
-      <CustomForm
-        
-        marginBottom={"10px"}
-        title={"Regístrate"}
-        onChange={onChange}
-        onSubmit={onSubmit}
-        options={["email", "password", "username" ]}
-        />
-      </Box>
-      
-
-     
-      
-
-
-    </FormSignupLayout>
-    
-
-    
-    </Flex>
-  )
-}
-
-export default SignupPage
+     return (
+      <Flex flexDir={{ base: "column", md: "row" }}>
+  
+        <Flex height={{ base: "50%", md: "100%" }} width={{ base: "100%", md: "50%" }}>
+          <Image src={SignupPicture} objectFit="cover" />
+        </Flex>
+  
+        <FormSignupLayout>
+          <Box paddingLeft={{ base: "0", md: "200px" }} paddingTop={{ base: "50px", md: "0" }}>
+            <CustomForm
+              marginBottom={"10px"}
+              title={"Regístrate"}
+              onChange={onChange}
+              onSubmit={onSubmit}
+              options={["email", "password", "username"]}
+            />
+          </Box>
+        </FormSignupLayout>
+  
+      </Flex>
+    );
+  };
+  
+  export default SignupPage;

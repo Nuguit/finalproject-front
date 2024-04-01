@@ -12,7 +12,13 @@ const ProfilePage = ({ }) => {
 
   return (
     <PageWrapper>
-      <Flex alignItems="center" justifyContent="center" flexDirection="column" marginTop="20px" >
+      <Flex
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+        marginTop="20px"
+        minHeight="calc(100vh - 20px)"
+      >
         <ImageUploader />
         <ModalLogic />
         <Text textAlign="center" marginBottom="10px" fontSize="60px">
@@ -26,16 +32,14 @@ const ProfilePage = ({ }) => {
         </Text>
         <Text textAlign="center" marginBottom="10px" fontSize="15px">
           <Link to="/contribuciones">Ver tus contribuciones</Link>
-
         </Text>
         <DeleteUserButton />
-
       </Flex>
     </PageWrapper>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
 
 
 

@@ -25,7 +25,7 @@ const Footer = () => {
 
   return (
     <Flex
-      padding={"54px 80px"}
+      padding={"54px 10px"}
       backgroundColor={"#308c67"}
       color={"white"}
       alignItems={"center"}
@@ -48,7 +48,7 @@ const Footer = () => {
             alignItems={"flex-end"}
             fontSize={"24px"}
             fontWeight={"400"}
-            textAlign={{ base: "center", md: "right" }} // Alinear el texto a la derecha en pantallas medianas y grandes
+            textAlign={{ base: "center", md: "right" }} 
           >
             Sobre Nosotr@s/Contacto
           </Text>

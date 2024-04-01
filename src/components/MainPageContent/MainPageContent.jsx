@@ -1,18 +1,20 @@
 import { Flex, Text } from '@chakra-ui/react';
 import MainTitle from '../Title/MainTitle';
-import MainImage from "./MainImage.jpg"
 import MainPageButton from '../Buttons/MainPage/MainPageButton';
 import { Link } from 'react-router-dom';
 import PageWrapper from '../PageWrapper/PageWrapper';
+
+import option2 from "./option2.png"
 
 const Centralcont = () => {
   return (
     <PageWrapper>
       <Flex position="relative" alignItems="flex-start" justifyContent="flex-start" minHeight="100vh">
         <img
-          src={MainImage}
+          src={option2}
           alt="MainImage"
           style={{
+            marginTop: "200px",
             width: "45%",
             height: "auto",
             maxWidth: "80%",

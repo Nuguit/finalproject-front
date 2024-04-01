@@ -6,8 +6,8 @@ const ProfileDetails = ({ onOpen, showModal }) => {
     <Flex justifyContent="center" alignItems="center">
       <Flex
         position="relative"
-        paddingTop="30px"
-        width={{ base: "100%", md: "300px" }}
+        paddingTop="10px"
+        width="auto"
         justifyContent="center"
       >
         {!showModal && (
