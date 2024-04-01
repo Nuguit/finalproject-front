@@ -1,10 +1,8 @@
-import { Flex, Text } from "@chakra-ui/layout"
-import CustomLink from "../CustomLink/CustomLink"
-import FbIcon from "../FbIcon/FbIcon.jsx"
-import InstagramIcon from "../InstagramIcon/InstagramIcon.jsx"
-import XIcon from "../XIcon/XIcon.jsx"
-import { Box } from "@chakra-ui/react"
-
+import { Flex, Text, Box } from "@chakra-ui/react";
+import CustomLink from "../CustomLink/CustomLink";
+import FbIcon from "../FbIcon/FbIcon.jsx";
+import InstagramIcon from "../InstagramIcon/InstagramIcon.jsx";
+import XIcon from "../XIcon/XIcon.jsx";
 
 const Footer = () => {
   const ICONS = [
@@ -23,40 +21,42 @@ const Footer = () => {
       link: "https://twitter.com/",
       id: "xi",
     },
-  ]
-  return (
+  ];
 
+  return (
     <Flex
-    
       padding={"54px 80px"}
       backgroundColor={"#308c67"}
       color={"white"}
       alignItems={"center"}
-          
-      
-      
+      justifyContent={"space-between"} // Alinear elementos a la derecha y a la izquierda
+      flexWrap={"wrap"} // Permitir que los elementos se envuelvan en caso de pantalla pequeña
     >
-
-{ICONS.map(({ component, link, id}) => {
-        return (
+      <Flex alignItems="center">
+        {ICONS.map(({ component, link, id }) => (
           <Box key={id} justifycontent={"left"} padding={"10px"}>
-          <CustomLink to={link} cursor={"pointer"} key={id}>
-            {component}
-          </CustomLink></Box>
-        )
-      })}
+            <CustomLink to={link} cursor={"pointer"} key={id}>
+              {component}
+            </CustomLink>
+          </Box>
+        ))}
+      </Flex>
 
-         
-      <Flex >
+      <Flex alignItems="center">
         <CustomLink to="/sobrenosotros">
-          <Text alignItems={"flex-end"} fontSize={"24px"} fontWeight={"400"} >Sobre Nosotr@s/Contacto</Text>
-        </CustomLink></Flex>
+          <Text
+            alignItems={"flex-end"}
+            fontSize={"24px"}
+            fontWeight={"400"}
+            textAlign={{ base: "center", md: "right" }} // Alinear el texto a la derecha en pantallas medianas y grandes
+          >
+            Sobre Nosotr@s/Contacto
+          </Text>
+        </CustomLink>
+      </Flex>
+    </Flex>
+  );
+};
 
+export default Footer;
 
-</Flex>
-
-    
-  )
-}
-
-export default Footer

@@ -10,8 +10,6 @@ import { Link } from "react-router-dom"
 import CustomLink from "../../CustomLink/CustomLink"
 import ImageUploader from "./imageUploader"
 
-
-
 const LoggedNavbar = () => {
   const { user, logout } = useContext(AuthContext)
   const username = user?.username;
@@ -25,15 +23,15 @@ const LoggedNavbar = () => {
 
   return (
     <Flex
-      direction={{ base: "column", md: "row" }} // Columna en dispositivos móviles, fila en dispositivos medianos y grandes
-      padding={{ base: "20px", md: "34px 80px" }} // Menos relleno en dispositivos móviles
+      direction={{ base: "column", md: "row" }}
+      padding={{ base: "20px", md: "34px 80px" }}
       backgroundColor={"#308c67"}
       color={"white"}
-      alignItems="center" // Alinea los elementos verticalmente
-      justifyContent="space-between" // Espacio uniforme entre los elementos
+      alignItems="center"
+      justifyContent="space-between"
     >
       <Flex alignItems="center" gap="4">
-        <Image src={SafeWalkNavbar} width={{ base: "200px", md: "300px" }} height="50px" alt="SafeWalk Navbar" />
+        <Image src={SafeWalkNavbar} width={{ base: "200px", md: "300px" }} height="60px" alt="SafeWalk Navbar" />
         {NAVIGATION_LINK.map(({ link, text }) => (
           <NavigationLink to={link} key={text}>
             <Text>{text}</Text>
@@ -41,22 +39,22 @@ const LoggedNavbar = () => {
         ))}
       </Flex>
 
-      <Box>
-        <Link to="/">
-          <Image
-            borderRadius="full"
-            boxSize={{ base: "50px", md: "100px" }} // Tamaño más pequeño en dispositivos móviles
-            src={off}
-            alt="Cerrar sesión"
-            onClick={logout}
-          />
-        </Link>
-      </Box>
+      <Flex alignItems="center" gap="15px"> {/* Alinea los elementos horizontalmente con espacio de 15px entre ellos */}
+        <Flex>
+          <ImageUploader />
+        </Flex>
 
-      <Flex>
-        
-          <ImageUploader/>
-        
+        <Box>
+          <Link to="/">
+            <Image
+              borderRadius="full"
+              boxSize={{ base: "50px", md: "100px" }}
+              src={off}
+              alt="Cerrar sesión"
+              onClick={logout}
+            />
+          </Link>
+        </Box>
       </Flex>
     </Flex>
   )
