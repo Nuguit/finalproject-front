@@ -8,6 +8,9 @@ class AxiosConfig {
       }
     );
   }
+  getToken() {
+    return (localStorage.getItem("token"))
+  }
 }
 
 export  default AxiosConfig;

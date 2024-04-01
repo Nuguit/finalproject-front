@@ -12,7 +12,8 @@ import ImageUploader from "./imageUploader"
 
 const LoggedNavbar = () => {
   const { user, logout } = useContext(AuthContext)
-  const username = user?.username;
+  const username = user.user?.username;
+  console.log("LOGG", user)
   const NAVIGATION_LINK = [
     {
       link: "/tuperfil",

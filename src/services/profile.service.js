@@ -23,7 +23,8 @@ class SafeMapService extends AxiosConfig {
 
 
     
-  async editProfile(userId, token, data) {
+  async editProfile(userId, data) {
+    const token= this.getToken();
     try {
       const response = await this.axios.put(`/tuperfil/${userId}`, data, {
         headers: {
