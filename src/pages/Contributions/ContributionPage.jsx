@@ -12,11 +12,11 @@ import ContributionsComponent from '../../components/Contributions/Contributions
 export const ContributionPage = () => {
   return (
     <div>
-      <Flex justifyContent="center" paddingTop="100px">        
+      <Flex justifyContent="center" paddingTop={{ base: '20px', md: '50px' }}>
         <CustomLink to="/">
           <Image
             borderRadius='full'
-            boxSize='200px'
+            boxSize={{ base: '80px', md: '100px' }}
             src={icono}
             alt='SafeWalk'
           />
@@ -25,17 +25,17 @@ export const ContributionPage = () => {
 
       <ContributionsComponent />
 
-      <Box paddingTop="150px" paddingBottom="5px" fontSize="50px" display="flex" justifyContent="center">
+      <Box paddingTop="10px" paddingBottom="5px" fontSize={{ base: '20px', md: '30px' }} display="flex" justifyContent="center">
         <Text>
           ¡Gracias por formar parte de la comunidad SafeWalk! Tu ayuda es imprescindible ❤
         </Text>
       </Box>
 
       <Box display="flex" justifyContent="center">
-        <img width="20%" src={ContributionsKittie} alt="Kittie" />
+        <img width="10%" src={ContributionsKittie} alt="Kittie" />
       </Box>
 
-      <Box paddingTop="50px" paddingBottom="5px" fontSize="50px" display="flex" justifyContent="center">
+      <Box paddingTop="50px" paddingBottom="5px" fontSize={{ base: '20px', md: '30px' }} display="flex" justifyContent="center">
         <Link to="/safemap">
           <Text color="#308c67">
             ¿Quieres añadir un nuevo aviso?

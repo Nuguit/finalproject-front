@@ -1,6 +1,5 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import LoggedNavbar from '../../components/Navbar/LoggedNavBar/LoggedNavBar'
 import SafeMapTitle from "../../components/SafeMap/SafeMapTitle.png"
 import { Text, Box, Center } from '@chakra-ui/react'
 import TurnMainPage from '../../components/Buttons/SafeMapAddedPage/TurnMainPage'

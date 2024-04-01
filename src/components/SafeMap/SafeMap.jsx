@@ -5,6 +5,7 @@ import { Text } from '@chakra-ui/react';
 import SafeMapService from "../../services/profile.service"
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import { Flex } from '@chakra-ui/react';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -103,52 +104,82 @@ function MyMap() {
 
 
   return isLoaded ? (
-  <>
-      <GoogleMap
-        mapContainerStyle={{ width: '800px', height: '800px', border: '30px solid #308c67' }}
-        {...mapOptions}
-      >
-        {currentLocation && (
-          <Marker
-            position={currentLocation}
-            
-          />
-        )}
-        {markers.map((marker, index) => (
-          <Marker
-            key={index}
-            position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
-            icon={Marker2}
-          />
-        ))}
-        {clickedMarker && (
-          <Marker
-            position={clickedMarker}
-            icon={Marker2}
-          />
-        )}
-      </GoogleMap>
-
+    <>
+      <Flex justifyContent={"flex-end"}>
+        <GoogleMap
+          mapContainerStyle={{ width: '100%', height: '800px', border: '30px solid #308c67'}}
+          {...mapOptions}
+        >
+          {currentLocation && (
+            <Marker
+              position={currentLocation}
+            />
+          )}
+          {markers.map((marker, index) => (
+            <Marker
+              key={index}
+              position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
+              icon={Marker2}
+            />
+          ))}
+          {clickedMarker && (
+            <Marker
+              position={clickedMarker}
+              icon={Marker2}
+            />
+          )}
+        </GoogleMap>
+      </Flex>
+  
       <div>
-        <Text width={"100%"} height={"100%"} paddingTop={"100px"} paddingBottom={"10px"} fontSize={"60px"} fontWeight={"400"} fontStyle={'bold'} textAlign={"center"}>Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:</Text>
+        <Text
+          width={"100%"}
+          height={"100%"}
+          paddingTop={{ base: "50px", md: "100px" }}
+          paddingBottom={"10px"}
+          fontSize={{ base: "40px", md: "60px" }}
+          fontWeight={"400"}
+          fontStyle={'bold'}
+          textAlign={"center"}
+        >
+          Una vez hayas localizado el espacio en el mapa y clicado sobre él, cuéntanos:
+        </Text>
       </div>
-
+  
       <form>
         <input 
-          style={{ backgroundColor: '#e5e5e5', height: '400px', width:'1000px', marginLeft: '100px', marginBottom: '100px' }}
+          style={{ 
+            backgroundColor: '#e5e5e5',
+            height: { base: '300px', md: '400px' },
+            width:'100%',
+            marginLeft: { base: '10px', md: '100px' },
+            marginBottom: { base: '50px', md: '100px' }
+          }}
           type="text"
           id="warning"
           value={warning}
           onChange={handleWarningChange}
         />
-        <button onClick={handleSubmit} type="button" style={{ color: 'white', backgroundColor: '#308c67', marginLeft: '100px', padding: '10px', borderRadius: '20px', fontSize: '30px' }}>Añadir aviso</button>
+        <button 
+          onClick={handleSubmit} 
+          type="button" 
+          style={{ 
+            color: 'white', 
+            backgroundColor: '#308c67', 
+            marginLeft: { base: '10px', md: '100px' },
+            marginRight: { base: '10px', md: '100px' },
+            padding: '10px', 
+            borderRadius: '20px', 
+            fontSize: { base: '20px', md: '30px' }
+          }}
+        >
+          Añadir aviso
+        </button>
       </form>
-
     </>
   ) : (
     <div>Cargando mapa...</div>
   );
 }
 
-export default MyMap;
-
+  export default MyMap;

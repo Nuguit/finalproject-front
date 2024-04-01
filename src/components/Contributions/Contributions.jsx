@@ -26,27 +26,29 @@ function ContributionsComponent() {
   }, []);
 
   return (
-    <Flex paddingTop="150px" paddingBottom="150px" display="flex" justifyContent="center" >
-    <div >
-      <p style={{ fontSize: '50px' }}>Aquí están tus contribuciones:</p>
-      {warnings.length > 0 ? (
-        <ol style={{ flexDirection: "column", paddingTop: '150px', paddingBottom: '150px', fontSize: '25px', display: 'flex', justifyContent: 'center' }}>
-          {warnings.map((warning, index) => (
-            <li key={index}>
-              <p> {warning.input}</p>
-              <p>Coordenadas: {warning.location.coordinates.join(', ')}</p>
+    <Flex paddingTop="10px" paddingBottom="150px" justifyContent="center">
+      <div>
+        <p style={{ fontSize: '50px', textAlign: 'center' }}>Aquí están tus contribuciones:</p>
+        {warnings.length > 0 ? (
+          <ol style={{ flexDirection: "column", paddingTop: '50px', paddingBottom: '50px', fontSize: '25px', display: 'flex', justifyContent: 'center' }}>
+            {warnings.map((warning, index) => (
+              <li key={index}>
+                <p> {warning.input}</p>
+                <p>Coordenadas: {warning.location.coordinates.join(', ')}</p>
               </li>
-          ))}
-        </ol>
-      ) : (
-        <>
-          <Text>¡Vaya! Aún no hay nada por aquí.</Text>
-          <Link to="/safemap">
-            <Text color="#308c67">¿Quieres añadir tu primer aviso?</Text>
-          </Link>
-        </>
-      )}
-    </div></Flex>
+            ))}
+          </ol>
+        ) : (
+          <Flex flexDirection="column" alignItems="center" paddingTop="50px">
+            <Text textAlign="center">¡Vaya! Aún no hay nada por aquí.</Text>
+            <Link to="/safemap">
+              <Text color="#308c67">¿Quieres añadir tu primer aviso?</Text>
+            </Link>
+          </Flex>
+        )}
+      </div>
+    </Flex>
   );
 }
+
 export default ContributionsComponent;
