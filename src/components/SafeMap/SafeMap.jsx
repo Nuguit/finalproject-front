@@ -27,27 +27,26 @@ function MyMap() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("token")
-        const response = await SafeMapService.getAllWarnings(token); // Usa getAllWarnings del contexto de autenticación
-        console.log("RESPONSE", response);
+        const response = await SafeMapService.getAllWarnings(token) // Usa getAllWarnings del contexto de autenticación
         if (!response) {
-          throw new Error('Error al obtener las coordenadas');
-        } 
-        
-        setMarkers(response);
-  
+          throw new Error("Error al obtener las coordenadas")
+        }
+
+        setMarkers(response)
+
         navigator.geolocation.getCurrentPosition((position) => {
           setCurrentLocation({
             lat: position.coords.latitude,
-            lng: position.coords.longitude
-          });
-        });
+            lng: position.coords.longitude,
+          })
+        })
       } catch (error) {
-        console.log("FETCH ERROR", error);
+        console.log("FETCH ERROR", error)
       }
-    };
+    }
 
-    fetchData(); 
-  }, [getAllWarnings]);
+    if (isLoaded) fetchData()
+  }, [getAllWarnings, isLoaded])
 
   const handleMapClick = (event) => {
     const newMarker = {

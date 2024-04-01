@@ -25,11 +25,12 @@ const Navbar = () => {
   return (
 
     <Flex
-      padding={"34px 80px"}
-      justifycontent={"space-between"}
-      alignItems={"right"}
-      backgroundColor={"#308c67"}
-      color={"white"}
+    direction={{ base: "column", md: "row" }} 
+    padding={{ base: "20px", md: "34px 80px" }} 
+    backgroundColor={"#308c67"}
+    color={"white"}
+    alignItems="center" // Alinea los elementos verticalmente
+    justifyContent="space-between"
     >
       <Flex gap={"34px"}>
         {NAVIGATION_LINK.map(({ link, text }) => {
@@ -52,7 +53,8 @@ const Navbar = () => {
                 borderRadius='full'
                 boxSize='50px'
                 src={icono}
-                alt='SafeWalk'></Image></CustomLink></Flex></Flex>
+                alt='SafeWalk'
+                title="Página principal"></Image></CustomLink></Flex></Flex>
 
          
           )}
