@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { Flex } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import {useLocation } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
@@ -26,7 +27,8 @@ function MyMap() {
   const navigate = useNavigate();
   const {createWarning , getAllWarnings} = useContext(AuthContext);
   const [hoveredMarker, setHoveredMarker] = useState(null);
-  const [hoveredMarkerIndex, setHoveredMarkerIndex] = useState(null);
+  const [geolocationEstablished, setGeolocationEstablished] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,20 +41,33 @@ function MyMap() {
 
         setMarkers(response)
 
-        navigator.geolocation.getCurrentPosition((position) => {
-          setCurrentLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          })
-        })
+        if(!geolocationEstablished && location.search){
+          const params = new URLSearchParams(location.search);
+          const lat = parseFloat(params.get('lat'));
+          const lng = parseFloat(params.get('lng'));
+          if (!isNaN(lat) && !isNaN(lng)) {
+            setCurrentLocation({ lat, lng });
+            setGeolocationEstablished(true);
+          }
+        } else if (!geolocationEstablished) {
+          // Obtener ubicación actual mediante geolocalización
+          navigator.geolocation.getCurrentPosition((position) => {
+            setCurrentLocation({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+            setGeolocationEstablished(true);
+          }); 
+        }
       } catch (error) {
-        
+        console.error('Error al obtener las coordenadas:', error);
       }
     }
 
     if (isLoaded) fetchData()
   }, [getAllWarnings, isLoaded])
 
+  
   const handleMapClick = (event) => {
     const newMarker = {
       lat: event.latLng.lat(),
