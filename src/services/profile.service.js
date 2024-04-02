@@ -54,7 +54,6 @@ class SafeMapService extends AxiosConfig {
     }
 
 
-
     async getAllWarnings(token) {
       const response = await this.axios.get("/safemap", {
         headers: {
@@ -65,10 +64,6 @@ class SafeMapService extends AxiosConfig {
       console.log("GETALLWARNINGS", response.data)
       return response.data
     }
-
-
-
-
 
   async createWarning(token, warningData) {
     try {
@@ -98,7 +93,16 @@ class SafeMapService extends AxiosConfig {
   };
    
 
-  
+async updateUserAvatar (avatar) {
+    try {
+      const response = await this.axios.post('/tuperfil/avatar', { avatar });
+      console.log('Avatar URL saved to user profile:', response.data.secure_url);
+      return response.data; 
+    } catch (error) {
+      console.error('Error al subir la imagen:', error);
+      throw error; 
+    }
+  };
   
   
   }

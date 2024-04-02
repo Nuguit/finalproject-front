@@ -17,9 +17,9 @@ const ProfilePage = ({ }) => {
         justifyContent="center"
         flexDirection="column"
         marginTop="20px"
-        minHeight="calc(100vh - 20px)"
+        minHeight="calc(65vh - 20px)"
       >
-        <ImageUploader />
+        <ImageUploader/>
         <ModalLogic />
         <Text textAlign="center" marginBottom="10px" fontSize="60px">
           ¡Bienvenid@ de nuevo!

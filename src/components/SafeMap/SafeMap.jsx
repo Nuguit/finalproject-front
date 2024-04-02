@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { Flex } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { Box } from '@chakra-ui/react';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -101,66 +102,15 @@ function MyMap() {
 
   const mapOptions = {
     center: currentLocation,
-    zoom: 4,
+    zoom: 15,
     onClick: handleMapClick,
   
   };
 
 
   return isLoaded ? (
-    <>
-      <Flex justifyContent={"flex-end"}>
-      <GoogleMap
-        mapContainerStyle={{ width: '100%', height: '800px', border: '30px solid #308c67'}}
-        {...mapOptions}
-      >
-        {currentLocation && (
-          <Marker
-            position={currentLocation}
-          />
-        )}
-        {markers.map((marker, index) => (
-          <Marker
-            key={index}
-            position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
-            icon={Marker2}
-            onMouseOver={() => setHoveredMarker(marker)} // Establecer el marcador sobre el que se pasa el mouse
-            onMouseOut={() => setHoveredMarker(null)} // Restablecer el marcador cuando se quita el mouse
-          />
-        ))}
-        {clickedMarker && (
-          <Marker
-            position={clickedMarker}
-            icon={Marker2}
-          />
-        )}
-
-        {/* Infowindow */}
-        {hoveredMarker && (
-          <InfoWindow
-            position={{ lat: hoveredMarker.location.coordinates[1], lng: hoveredMarker.location.coordinates[0] }}
-            onCloseClick={() => setHoveredMarker(null)}
-          >
-            <div style={{ backgroundColor: '#308c67', padding: 8}}>
-              <input 
-                style={{ 
-                  backgroundColor: '#e5e5e5',
-                  height: '50px',
-                  width: '250px',
-                  overflow: 'auto',
-                  wordWrap: 'break-word'
-                }}
-                type="text"
-                id="warning"
-                value={hoveredMarker.input}
-                readOnly  
-              />
-            </div>
-          </InfoWindow>
-        )}
-      </GoogleMap>
-      </Flex>
-  
+    <Flex>
+ <Box flex="1" width="50%">
       <div>
         <Text
           width={"100%"}
@@ -180,10 +130,12 @@ function MyMap() {
         <input 
           style={{ 
             backgroundColor: '#e5e5e5',
-            height: { base: '300px', md: '400px' },
-            width:'100%',
-            marginLeft: { base: '10px', md: '100px' },
-            marginBottom: { base: '50px', md: '100px' }
+            height: '200px',
+            width:'800px',
+            marginLeft: '50px',
+            display: 'block',
+            margin: 'auto', 
+            marginBottom: '10px'
           }}
           type="text"
           id="warning"
@@ -199,16 +151,73 @@ function MyMap() {
       backgroundColor: '#308c67', 
       marginLeft: { base: '10px', md: '100px' },
       marginRight: { base: '10px', md: '100px' },
+      marginTop:'10px',
+      fontSize: { base: '30px', md: '50px' },
       padding: '10px', 
       borderRadius: '20px', 
-      fontSize: { base: '20px', md: '30px' }
+      display: 'block', 
+    margin: 'auto',   
     }}
   >
     Añadir aviso
   </button>
 </Link>
-      </form>
-    </>
+      </form> </Box>
+
+      <Box flex="1" width="50%" ml={20} marginBottom='20px' marginRight='10px'>
+      <GoogleMap
+        mapContainerStyle={{ width: '100%', height: '800px', border: '30px solid #308c67'}}
+        {...mapOptions}
+      >
+        {currentLocation && (
+          <Marker
+            position={currentLocation}
+          />
+        )}
+        {markers.map((marker, index) => (
+          <Marker
+            key={index}
+            position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
+            icon={Marker2}
+            onMouseOver={() => setHoveredMarker(marker)} 
+            onMouseOut={() => setHoveredMarker(null)} 
+          />
+        ))}
+        {clickedMarker && (
+          <Marker
+            position={clickedMarker}
+            icon={Marker2}
+          />
+        )}
+
+        
+        {hoveredMarker && (
+          <InfoWindow
+            position={{ lat: hoveredMarker.location.coordinates[1], lng: hoveredMarker.location.coordinates[0] }}
+            onCloseClick={() => setHoveredMarker(null)}
+          >
+            <div style={{ backgroundColor: '#308c67', padding: 8}}>
+              <input 
+                style={{ 
+                  backgroundColor: '#e5e5e5',
+                  height: '100px',
+                  width: '350px',
+                  
+                }}
+                type="text"
+                id="warning"
+                value={hoveredMarker.input}
+                readOnly  
+              />
+            </div>
+          </InfoWindow>
+        )}
+      </GoogleMap>
+      </Box>
+     
+  
+
+    </Flex>
   ) : (
     <div>Cargando mapa...</div>
   );
