@@ -45,6 +45,7 @@ const Footer = () => {
       <Flex alignItems="center">
         <CustomLink to="/sobrenosotros">
           <Text
+          marginRight={"20px"}
             alignItems={"flex-end"}
             fontSize={"24px"}
             fontWeight={"400"}

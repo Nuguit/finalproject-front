@@ -3,7 +3,7 @@ import SafeMapService from '../../services/profile.service';
 import { Flex , Text } from '@chakra-ui/react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-
+import WarningsList from './WarningList';
 
 function ContributionsComponent() {
   const [warnings, setWarnings] = useState([]);
@@ -30,14 +30,7 @@ function ContributionsComponent() {
       <div>
         <p style={{ fontSize: '50px', textAlign: 'center' }}>Aquí están tus contribuciones:</p>
         {warnings.length > 0 ? (
-          <ol style={{ flexDirection: "column", paddingTop: '50px', paddingBottom: '50px', fontSize: '25px', display: 'flex', justifyContent: 'center' }}>
-            {warnings.map((warning, index) => (
-              <li key={index}>
-                <p> {warning.input}</p>
-                <p>Coordenadas: {warning.location.coordinates.join(', ')}</p>
-              </li>
-            ))}
-          </ol>
+          <WarningsList warnings={warnings}/>
         ) : (
           <Flex flexDirection="column" alignItems="center" paddingTop="50px">
             <Text textAlign="center">¡Vaya! Aún no hay nada por aquí.</Text>
