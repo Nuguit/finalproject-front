@@ -73,7 +73,10 @@ const AppRoutes = () => {
        
         {
           path: "/safemap/added",
-          element: <SafeMapAdded/>
+          element: (
+            <AuthMiddleware>
+               <SafeMapAdded />  
+             </AuthMiddleware> ), 
         },
         {
           path: "*",

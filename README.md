@@ -2,9 +2,7 @@
 
 SafeWalk is the first collaborative app that allows you to know in advance safe public spaces based on the experience of other users.
 
-# Deployed Application
-
-The deployed application can be found at the following link: "####".
+# Application
 
 To install all the dependencies used in the project, simply run the command:
 
@@ -18,6 +16,8 @@ You will need to create a .env (or .env.local) file if you want to run this proj
 
 - REACT_APP_GOOGLE_MAPS_API_KEY
 - REACT_APP_API_URL
+- CLOUDINARY_API_KEY
+- CLOUDINARY_API_SECRET
 
 # Application Routes:
 
@@ -31,6 +31,6 @@ You will need to create a .env (or .env.local) file if you want to run this proj
 |            /profile                 |     Profile Page          |    ✅     |
 |            /contributions           |Personal Contributions Page|    ✅     |
 |            /safemap                 |     Safemap Page          |    ✅     |
-|          /safemap/added            |    New Warning Added      |    ✅     |
+|          /safemap/added             |    New Warning Added      |    ✅     |
 
 
