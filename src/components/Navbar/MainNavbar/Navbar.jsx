@@ -29,7 +29,7 @@ const Navbar = () => {
     padding={{ base: "20px", md: "34px 80px" }} 
     backgroundColor={"#308c67"}
     color={"white"}
-    alignItems="center" // Alinea los elementos verticalmente
+    alignItems="center" 
     justifyContent="space-between"
     >
       <Flex gap={"34px"}>

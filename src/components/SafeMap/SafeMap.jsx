@@ -25,7 +25,7 @@ function MyMap() {
   const [warning, setWarning] = useState('');
   const [clickedMarker, setClickedMarker] = useState(null);
   const navigate = useNavigate();
-  const {createWarning , getAllWarnings} = useContext(AuthContext);
+  const {getAllWarnings} = useContext(AuthContext);
   const [hoveredMarker, setHoveredMarker] = useState(null);
   const [geolocationEstablished, setGeolocationEstablished] = useState(false);
   const location = useLocation();
@@ -50,7 +50,6 @@ function MyMap() {
             setGeolocationEstablished(true);
           }
         } else if (!geolocationEstablished) {
-          // Obtener ubicación actual mediante geolocalización
           navigator.geolocation.getCurrentPosition((position) => {
             setCurrentLocation({
               lat: position.coords.latitude,
@@ -95,8 +94,7 @@ function MyMap() {
         input: warning,
         markerCoordinates: [clickedMarker.lng, clickedMarker.lat]
       });
-        
-      console.log("RESPUESTA", response);
+     
       if (response.status === 201) {
         navigate("http://localhost:3000/profile/safemap/added");
       }
@@ -107,13 +105,7 @@ function MyMap() {
       console.error('Error:', error);
     }
   };
-  const handleMarkerMouseOver = (marker) => {
-    setHoveredMarker(marker);
-  };
-
-  const handleMarkerMouseOut = () => {
-    setHoveredMarker(null);
-  };
+  
 
   const mapOptions = {
     center: currentLocation,

@@ -37,8 +37,7 @@ const SignupPage = () => {
       })
       navigate("/login")
     } catch (error) {
-      console.log("Error ==>", error)
-    }
+      }
   }
 
      return (

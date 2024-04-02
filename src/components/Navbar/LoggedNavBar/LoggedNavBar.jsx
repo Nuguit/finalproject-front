@@ -1,5 +1,4 @@
 import { Flex, Text, Image, Box } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import NavigationLink from "../../NavigationLink/NavigationLink";
@@ -10,15 +9,13 @@ import ImageUploader from "./imageUploader";
 
 const LoggedNavbar = () => {
   const { user, logout } = useContext(AuthContext);
-  const username = user.user?.username;
-  console.log("LOGG", user);
   const NAVIGATION_LINK = [
     {
       link: "/tuperfil",
       text: user ? `¡Hola, ${user.user.username}!` : "¡Hola!"
     }
   ];
-  const location = useLocation();
+  
 
   return (
     <Flex

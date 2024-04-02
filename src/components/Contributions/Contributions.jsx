@@ -7,17 +7,15 @@ import WarningsList from './WarningList';
 
 function ContributionsComponent() {
   const [warnings, setWarnings] = useState([]);
-  const { user, setUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const userId = user?.user?._id;
   useEffect(() => {
     const fetchWarnings = async () => {
       try {
         const token = localStorage.getItem("token")
         const warningsData = await SafeMapService.contributions(userId, token);
-        console.log("WARNINGSOWNER", warningsData)
         setWarnings(warningsData);
-        console.log("WARNINGSDATA", warningsData)
-      } catch (error) {
+        } catch (error) {
         console.error('Error al obtener las contribuciones:', error);
       }
     };

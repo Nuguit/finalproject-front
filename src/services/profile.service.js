@@ -14,7 +14,6 @@ class SafeMapService extends AxiosConfig {
         Authorization: `Bearer ${token}`,
       },
     }  )
-    console.log(response.data)
     return response.data
   } catch(error){
     console.error ("Error al recuperar los warnings:", error)
@@ -61,7 +60,6 @@ class SafeMapService extends AxiosConfig {
         },
       }  
       )
-      console.log("GETALLWARNINGS", response.data)
       return response.data
     }
 
@@ -96,7 +94,6 @@ class SafeMapService extends AxiosConfig {
 async updateUserAvatar (avatar) {
     try {
       const response = await this.axios.post('/tuperfil/avatar', { avatar });
-      console.log('Avatar URL saved to user profile:', response.data.secure_url);
       return response.data; 
     } catch (error) {
       console.error('Error al subir la imagen:', error);

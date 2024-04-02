@@ -21,14 +21,12 @@ export const AuthProvider = ({ children }) => {
   const getUser = async () => {
     try {
       const token = getToken();
-      console.log("Token recuperado:", token); 
       if (token) {
         const loggedUser = await authService.getUser(token);
         setUser(loggedUser);
       }
     } catch (error) {
-      console.log("Error al recuperar el usuario:", error);
-    } finally {
+      } finally {
       setIsLoading(false);
     } }
     
@@ -48,7 +46,6 @@ export const AuthProvider = ({ children }) => {
         try{
           const token = getToken();
           const response = await SafeMapService.contributions(user._id, token);
-          console.log("CARACOLI", response)
           return response;
         }catch (error) {
           console.error("Error al recuperar contribuciones:", error);
@@ -91,11 +88,9 @@ export const AuthProvider = ({ children }) => {
     try {
       const { token } = await authService.login(userData)
       setToken(token);
-      console.log("Token establecido en localStorage:", token);
       await getUser()
       navigate("/tuperfil")
     } catch (error) {
-      console.log("ERROR", error)
     }}
     
     

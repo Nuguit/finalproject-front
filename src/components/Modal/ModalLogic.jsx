@@ -5,11 +5,10 @@ import ModalEdi from './Modal';
 import CustomForm from '../CustomForm/CustomForm';
 import ProfileDetails from './ProfileDetails/ProfileDetails';
 import { getProfileDetails } from '../../utils';
-import { useDisclosure, useToast } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import UploaderImage from '../Navbar/LoggedNavBar/imageUploader';
 
 const ModalLogic = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
   const { user, setUser } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [editProfileData, setEditProfileData] = useState({
@@ -21,8 +20,7 @@ const ModalLogic = () => {
   const toast = useToast();
   const userId = user?.user?._id;
   
-  const ParentComponent = () => {
-    const [showModal, setShowModal] = useState(false)};
+  
   
     const handleOpenModal = () => {
       setShowModal(true)};
@@ -39,8 +37,7 @@ const ModalLogic = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log('Submitting form...');
-          
+                
         const updatedProfile = await SafeMapService.editProfile(userId, editProfileData);
         setShowModal(false) 
         setUser(updatedProfile);
