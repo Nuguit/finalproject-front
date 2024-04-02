@@ -13,7 +13,6 @@ const ModalLogic = () => {
   const [showModal, setShowModal] = useState(false);
   const [editProfileData, setEditProfileData] = useState({
     username: '',
-    password: '',
     email: '',
     avatar: ''
   });
@@ -71,8 +70,8 @@ const ModalLogic = () => {
   };
 
 
-  const PROFILE_DETAILS = getProfileDetails(user.user.username, user.user.password, user.user.email, user.user.avatar);
-  const PROFILE_OPTIONS = ['username', 'password', 'email', 'avatar'];
+  const PROFILE_DETAILS = getProfileDetails(user.user.username,  user.user.email, user.user.avatar);
+  const PROFILE_OPTIONS = ['username', 'email', 'avatar'];
 
   return (
     <div>

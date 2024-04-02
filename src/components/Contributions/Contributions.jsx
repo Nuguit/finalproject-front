@@ -26,8 +26,7 @@ function ContributionsComponent() {
   return (
     <Flex paddingTop="10px" paddingBottom="150px" justifyContent="center">
       <div>
-        <p style={{ fontSize: '50px', textAlign: 'center' }}>Aquí están tus contribuciones:</p>
-        {warnings.length > 0 ? (
+       {warnings.length > 0 ? (
           <WarningsList warnings={warnings}/>
         ) : (
           <Flex flexDirection="column" alignItems="center" paddingTop="50px">

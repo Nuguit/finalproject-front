@@ -3,7 +3,6 @@ export const getProfileDetails = (
   ) => {
     return [
       { name: "Username", content: username },
-      { name: "Password", content: password },
       { name: "Email", content: email },
       {name: "Avatar", content: avatar}
         ]
