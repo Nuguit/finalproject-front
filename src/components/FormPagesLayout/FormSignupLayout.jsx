@@ -1,20 +1,20 @@
 import { Box, Flex } from "@chakra-ui/react"
 
 
-const FormSignupLayout = ({  children  }) => {
+const FormSignupLayout = ({ children }) => {
   return (
-      <Flex minH={"100px"} flexDir={"column"} >
-        <Box
-          w={"50%"}
-          paddingTop={"200px"}
-          paddingRight={"500px"}
-        >
-         
-        </Box>
-        <Flex flexDir={"column"} >
-          {children}
-        </Flex>
+    <Flex minH={"100px"} flexDir={"column"} >
+      <Box
+        w={"50%"}
+        paddingTop={"200px"}
+        paddingRight={"500px"}
+      >
+
+      </Box>
+      <Flex flexDir={"column"} >
+        {children}
       </Flex>
+    </Flex>
   )
 }
 

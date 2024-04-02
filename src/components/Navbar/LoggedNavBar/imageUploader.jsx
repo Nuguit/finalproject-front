@@ -7,11 +7,11 @@ import { useEffect } from "react";
 
 const UploaderImage = ({ onChange }) => {
   const [selectedImage, setSelectedImage] = useState(localStorage.getItem("selectedImage") || "");
-  const { user, setUser } = useContext(AuthContext); 
+  const { user, setUser } = useContext(AuthContext);
 
   useEffect(() => {
     if (selectedImage) {
-      localStorage.setItem("selectedImage", selectedImage); 
+      localStorage.setItem("selectedImage", selectedImage);
     }
   }, [selectedImage]);
 
@@ -33,21 +33,21 @@ const UploaderImage = ({ onChange }) => {
         }
       );
 
-      
+
       setSelectedImage(response.data.secure_url);
       if (typeof onChange === 'function') {
         onChange(response.data.secure_url);
-      }      
+      }
       const updatedUser = { ...user, user: { ...user.user, avatar: response.data.secure_url } };
-      setUser(updatedUser); 
+      setUser(updatedUser);
       await SafeMapService.updateUserAvatar(updatedUser.user.avatar);
-      } catch (error) {
-      
+    } catch (error) {
+
     }
   };
-  
+
   return (
-    <div   style={{ display: "inline-block" }}>
+    <div style={{ display: "inline-block" }}>
       <label htmlFor="image-upload">
         <img
           src={selectedImage}
@@ -67,7 +67,7 @@ const UploaderImage = ({ onChange }) => {
         accept="image/*"
         style={{ display: "none" }}
       />
-      </div>
+    </div>
   );
 };
 

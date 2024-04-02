@@ -14,7 +14,7 @@ class AuthService extends AxiosConfig {
     const response = await this.axios.post("/login", data);
     return response.data;
   }
-  
+
 
   async getUser(token) {
     const response = await this.axios.post(
@@ -29,7 +29,7 @@ class AuthService extends AxiosConfig {
     return response.data
   }
 
-  
+
 
 }
 

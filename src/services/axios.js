@@ -13,4 +13,4 @@ class AxiosConfig {
   }
 }
 
-export  default AxiosConfig;
+export default AxiosConfig;

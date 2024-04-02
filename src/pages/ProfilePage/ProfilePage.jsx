@@ -1,17 +1,12 @@
-import React, { useContext } from "react"
 import { Text, Flex } from "@chakra-ui/react"
-import PageWrapper from "../../components/PageWrapper/PageWrapper"
 import ModalLogic from "../../components/Modal/ModalLogic"
 import { Link } from "react-router-dom"
-import { AuthContext } from "../../contexts/AuthContext"
 import DeleteUserButton from "../../components/DeleteUser/DeleteUser"
 import ImageUploader from "../../components/Navbar/LoggedNavBar/imageUploader"
 
-const ProfilePage = ({ }) => {
-  const { user } = useContext(AuthContext)
-
+const ProfilePage = () => {
   return (
-    <PageWrapper>
+    <>
       <Flex
         alignItems="center"
         justifyContent="center"
@@ -19,7 +14,7 @@ const ProfilePage = ({ }) => {
         marginTop="20px"
         minHeight="calc(65vh - 20px)"
       >
-        <ImageUploader/>
+        <ImageUploader />
         <ModalLogic />
         <Text textAlign="center" marginBottom="10px" fontSize="60px">
           ¡Bienvenid@ de nuevo!
@@ -35,7 +30,7 @@ const ProfilePage = ({ }) => {
         </Text>
         <DeleteUserButton />
       </Flex>
-    </PageWrapper>
+    </>
   );
 };
 

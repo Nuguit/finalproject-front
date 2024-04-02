@@ -12,8 +12,8 @@ export const AuthProvider = ({ children }) => {
 
   const setToken = (token) => {
     localStorage.setItem("token", token);
-    }
-  
+  }
+
   const getToken = () => {
     return localStorage.getItem("token")
   }
@@ -26,45 +26,47 @@ export const AuthProvider = ({ children }) => {
         setUser(loggedUser);
       }
     } catch (error) {
-      } finally {
+    } finally {
       setIsLoading(false);
-    } }
-    
-   
-    const createWarning = async (warningdata) => {
-      try {
-        const token = localStorage.getItem('token'); 
-        const response = await SafeMapService.createWarning(token, warningdata); 
-        return response;
-      } catch (error) {
-        console.error('Error al crear advertencia:', error);
-        throw error;
-      }}
+    }
+  }
 
 
-      const contributions = async()=> {
-        try{
-          const token = getToken();
-          const response = await SafeMapService.contributions(user._id, token);
-          return response;
-        }catch (error) {
-          console.error("Error al recuperar contribuciones:", error);
-          throw error;
-        }
-      };
-      
+  const createWarning = async (warningdata) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await SafeMapService.createWarning(token, warningdata);
+      return response;
+    } catch (error) {
+      console.error('Error al crear advertencia:', error);
+      throw error;
+    }
+  }
+
+
+  const contributions = async () => {
+    try {
+      const token = getToken();
+      const response = await SafeMapService.contributions(user._id, token);
+      return response;
+    } catch (error) {
+      console.error("Error al recuperar contribuciones:", error);
+      throw error;
+    }
+  };
+
 
 
   const deleteUser = async () => {
     try {
-      await authService.deleteUser(); 
+      await authService.deleteUser();
       localStorage.removeItem("token");
       setUser(null);
     } catch (error) {
       console.error("Error al eliminar usuario:", error);
     }
   };
-  
+
   const editProfile = async () => {
     try {
       const token = getToken();
@@ -75,7 +77,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  
+
   const logout = (e) => {
     if (e) e.preventDefault()
     localStorage.removeItem("token")
@@ -83,7 +85,7 @@ export const AuthProvider = ({ children }) => {
     navigate("/login")
   }
 
-  
+
   const login = async (userData) => {
     try {
       const { token } = await authService.login(userData)
@@ -91,18 +93,19 @@ export const AuthProvider = ({ children }) => {
       await getUser()
       navigate("/tuperfil")
     } catch (error) {
-    }}
-    
-    
-    
-    useEffect(() => {
-      getUser()
-    }, [])
-    
-  
+    }
+  }
+
+
+
+  useEffect(() => {
+    getUser()
+  }, [])
+
+
 
   return (
-    <AuthContext.Provider value={{ user,setUser, contributions, editProfile, logout, login, isLoading, createWarning, deleteUser }}>
+    <AuthContext.Provider value={{ user, setUser, contributions, editProfile, logout, login, isLoading, createWarning, deleteUser }}>
       {children}
     </AuthContext.Provider>
   )

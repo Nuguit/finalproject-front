@@ -8,9 +8,9 @@ import NotFoundPage from "../pages/NotFoundPage/NotFoundPage"
 import AuthMiddleware from "../middlewares/AuthMiddleware"
 import HowWorks from "../components/HowWorks/HowWorks"
 import AboutUs from "../pages/AboutUsPage/AboutUsPage"
-import SafeMapPage  from "../pages/SafeMapPage/SafeMapPage"
+import SafeMapPage from "../pages/SafeMapPage/SafeMapPage"
 import SafeMapAdded from "../pages/SafeMapAddedPage/SafeMapAdded"
-import  ContributionPage  from "../pages/Contributions/ContributionPage"
+import ContributionPage from "../pages/Contributions/ContributionPage"
 
 
 
@@ -31,52 +31,50 @@ const AppRoutes = () => {
         {
           path: "/signup",
           element: <SignupPage />,
-        }, 
+        },
         {
           path: "/comofunciona",
           element: <HowWorks />,
-          
+
         },
         {
           path: "/sobrenosotros",
-          element: <AboutUs />, 
-          
+          element: <AboutUs />,
+
         },
         {
           path: "/contribuciones",
           element: (
             <AuthMiddleware>
-               <ContributionPage />  
-             </AuthMiddleware> ), 
-             
-          
+              <ContributionPage />
+            </AuthMiddleware>),
+
+
         },
 
         {
           path: "/tuperfil",
           element: (
-           <AuthMiddleware>
-              <ProfilePage />  
-            </AuthMiddleware>  
+            <AuthMiddleware>
+              <ProfilePage />
+            </AuthMiddleware>
           ),
         },
         {
           path: "/safemap",
           element: (
             <AuthMiddleware>
-               <SafeMapPage />  
-             </AuthMiddleware> ), 
-            
-          
-          
+              <SafeMapPage />
+            </AuthMiddleware>),
+
         },
-       
+
         {
           path: "/safemap/added",
           element: (
             <AuthMiddleware>
-               <SafeMapAdded />  
-             </AuthMiddleware> ), 
+              <SafeMapAdded />
+            </AuthMiddleware>),
         },
         {
           path: "*",

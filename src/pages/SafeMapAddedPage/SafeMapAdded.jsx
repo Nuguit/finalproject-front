@@ -1,12 +1,11 @@
-import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import SafeMapTitle from "../../components/SafeMap/SafeMapTitle.png"
-import { Text, Box, Center } from '@chakra-ui/react'
+import { Text, Box, Flex, Image } from '@chakra-ui/react'
 import TurnMainPage from '../../components/Buttons/SafeMapAddedPage/TurnMainPage'
 import TurnSafeMap from '../../components/Buttons/SafeMapAddedPage/TurnSafeMap'
 import SafeMapAddedPicture from "./SafeMapAddedPicture.jpg"
 import { Link } from 'react-router-dom'
-import { Image } from '@chakra-ui/react'
+
 
 
 const SafeMapAdded = () => {
@@ -37,7 +36,7 @@ const SafeMapAdded = () => {
         </Link>
       </Flex>
 
-      <Image src={SafeMapAddedPicture} maxWidth="40%"/>
+      <Image src={SafeMapAddedPicture} maxWidth="40%" />
     </Flex>
   );
 };

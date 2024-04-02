@@ -29,7 +29,7 @@ const Centralcont = () => {
           <Text fontSize="60px" fontWeight="300" fontStyle="italic" textAlign="left" mb="6" marginTop="20px">
             Encuentra tu camino.
           </Text>
-          <Text  maxWidth="50vw" 
+          <Text maxWidth="50vw"
             fontSize="25px" fontWeight="300" fontStyle="italic" textAlign="left" mt="6">
             La primera web que te permite conocer de antemano los espacios públicos seguros tras la experiencia de otros usuari@s.
           </Text>

@@ -4,10 +4,10 @@ import LoginPicture from "../../pages/LoginPage/LoginPicture.jpg";
 const FormLoginLayout = ({ children }) => {
   return (
     <Flex
-      minH={"auto"} 
+      minH={"auto"}
       maxWidth={"1400px"}
-      margin={"0 auto"} 
-      alignItems={"center"} 
+      margin={"0 auto"}
+      alignItems={"center"}
     >
       <Box w={"50%"} position={"relative"}>
         {children}

@@ -7,11 +7,11 @@ import { AuthContext } from '../../contexts/AuthContext'
 
 
 const NavbarLogic = () => {
- const {user}  = useContext(AuthContext);  
- 
- return (
-   user ? <LoggedNavbar /> : <Navbar />
- )
+  const { user } = useContext(AuthContext);
+
+  return (
+    user ? <LoggedNavbar /> : <Navbar />
+  )
 }
 
 export default NavbarLogic

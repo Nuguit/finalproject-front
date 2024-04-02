@@ -11,7 +11,7 @@ function HomePage() {
     <PageWrapper>
       <Flex>
         <Centralcont />
-        </Flex>
+      </Flex>
     </PageWrapper>
   );
 }

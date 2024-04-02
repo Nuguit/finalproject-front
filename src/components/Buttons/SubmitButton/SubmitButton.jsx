@@ -1,7 +1,7 @@
 import { Button as ChakraButton } from "@chakra-ui/react"
 import React from "react"
 
-const SubmitButton = () => {
+const SubmitButton = ({ label }) => {
   return (
     <ChakraButton
       _hover={{
@@ -18,7 +18,7 @@ const SubmitButton = () => {
       color={"#308c67"}
       type="submit"
     >
-      ¡Comienza a cambiar el mundo!
+      {label}
     </ChakraButton>
   )
 }

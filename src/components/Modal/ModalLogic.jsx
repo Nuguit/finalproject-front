@@ -6,7 +6,7 @@ import CustomForm from '../CustomForm/CustomForm';
 import ProfileDetails from './ProfileDetails/ProfileDetails';
 import { getProfileDetails } from '../../utils';
 import { useToast } from '@chakra-ui/react';
-import UploaderImage from '../Navbar/LoggedNavBar/imageUploader';
+
 
 const ModalLogic = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -14,39 +14,36 @@ const ModalLogic = () => {
   const [editProfileData, setEditProfileData] = useState({
     username: '',
     email: '',
-    avatar: ''
+
   });
   const toast = useToast();
   const userId = user?.user?._id;
-  
-  
-  
-    const handleOpenModal = () => {
-      setShowModal(true)};
+
+
+
+  const handleOpenModal = () => {
+    setShowModal(true)
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditProfileData({ ...editProfileData, [name]: value });
   };
 
-  const handleAvatarChange = (imageUrl) => { 
-    setEditProfileData({ ...editProfileData, avatar: imageUrl }); 
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-                
-        const updatedProfile = await SafeMapService.editProfile(userId, editProfileData);
-        setShowModal(false) 
-        setUser(updatedProfile);
-        toast({
-          title: '¡Perfil actualizado!',
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-        });
-      
+
+      const updatedProfile = await SafeMapService.editProfile(userId, editProfileData);
+      setShowModal(false)
+      setUser(updatedProfile);
+      toast({
+        title: '¡Perfil actualizado!',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
+
     } catch (error) {
       console.error('Error al editar perfil:', error);
       if (error.response && error.response.status === 401) {
@@ -70,18 +67,18 @@ const ModalLogic = () => {
   };
 
 
-  const PROFILE_DETAILS = getProfileDetails(user.user.username,  user.user.email, user.user.avatar);
-  const PROFILE_OPTIONS = ['username', 'email', 'avatar'];
+  const PROFILE_DETAILS = getProfileDetails(user.user.username, user.user.email);
+  const PROFILE_OPTIONS = ['username', 'email'];
 
   return (
     <div>
       <ProfileDetails showModal={showModal}
         onOpen={handleOpenModal} profileDetails={PROFILE_DETAILS} />
       <ModalEdi isOpen={showModal} onClose={() => setShowModal(false)} >
-        <CustomForm options={PROFILE_OPTIONS} onChange={handleChange} onSubmit={handleSubmit} title={'Edita tu perfil'}>
-          <UploaderImage onChange={handleAvatarChange} />
+        <CustomForm options={PROFILE_OPTIONS} onChange={handleChange} onSubmit={handleSubmit} title={'Edita tu perfil'} submitButtonLabel={"Sigue cambiando el mundo :)"}>
+
         </CustomForm>
-        </ModalEdi>
+      </ModalEdi>
     </div>
   );
 };

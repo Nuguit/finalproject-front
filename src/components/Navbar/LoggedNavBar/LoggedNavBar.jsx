@@ -15,7 +15,7 @@ const LoggedNavbar = () => {
       text: user ? `¡Hola, ${user.user.username}!` : "¡Hola!"
     }
   ];
-  
+
 
   return (
     <Flex
@@ -35,7 +35,7 @@ const LoggedNavbar = () => {
         ))}
       </Flex>
 
-      <Flex alignItems="center" gap="15px" flexWrap="wrap"> 
+      <Flex alignItems="center" gap="15px" flexWrap="wrap">
         <Flex>
           <ImageUploader />
         </Flex>

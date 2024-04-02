@@ -14,7 +14,7 @@ const Navbar = () => {
     {
       link: "/signup",
       text: "Regístrate",
-      
+
     },
     { link: "/login", text: "Inicia sesión" },
     { link: "/comofunciona", text: "¿Cómo funciona?" },
@@ -25,12 +25,12 @@ const Navbar = () => {
   return (
 
     <Flex
-    direction={{ base: "column", md: "row" }} 
-    padding={{ base: "20px", md: "34px 80px" }} 
-    backgroundColor={"#308c67"}
-    color={"white"}
-    alignItems="center" 
-    justifyContent="space-between"
+      direction={{ base: "column", md: "row" }}
+      padding={{ base: "20px", md: "34px 80px" }}
+      backgroundColor={"#308c67"}
+      color={"white"}
+      alignItems="center"
+      justifyContent="space-between"
     >
       <Flex gap={"34px"}>
         {NAVIGATION_LINK.map(({ link, text }) => {
@@ -40,26 +40,27 @@ const Navbar = () => {
               to={link}
               key={text}
               textDecoration={isActiveLink ? "underline" : "none"}
-              
+
             >
               <Text>{text}</Text>
             </NavigationLink>
           )
         })}
       </Flex>
-      <Flex>        
-            <CustomLink to="/">
-              <Image
-                borderRadius='full'
-                boxSize='50px'
-                src={icono}
-                alt='SafeWalk'
-                title="Página principal"></Image></CustomLink></Flex></Flex>
+      <Flex>
+        <CustomLink to="/">
+          <Image
+            borderRadius='full'
+            boxSize='50px'
+            src={icono}
+            alt='SafeWalk'
+            title="Página principal"></Image></CustomLink></Flex></Flex>
 
-         
-          )}
-      
-      
-  
 
-      export default Navbar
+  )
+}
+
+
+
+
+export default Navbar

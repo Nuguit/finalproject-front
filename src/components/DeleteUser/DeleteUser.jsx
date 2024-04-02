@@ -8,33 +8,33 @@ import { useToast } from '@chakra-ui/react';
 
 
 const DeleteUserButton = () => {
-  const { user, setUser } = useContext(AuthContext); 
+  const { user, setUser } = useContext(AuthContext);
   const userId = user?.user?._id;
   const toast = useToast();
   const navigate = useNavigate();
 
 
 
-  
-const handleDeleteUser = async () => {
-  try {
-    const token = localStorage.getItem("token"); 
-    await SafeMapService.deleteUser(userId, token);
-    localStorage.removeItem("token");
-    setUser(null);
-    toast({
-      title: "Tu cuenta ha sido borrada.",
-      description: "¡Vuelve cuando quieras!",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-    });
-    navigate("/");
-  } catch (error) {
-    console.error("Error al eliminar usuario:", error);
-  }
-};
-      
+
+  const handleDeleteUser = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await SafeMapService.deleteUser(userId, token);
+      localStorage.removeItem("token");
+      setUser(null);
+      toast({
+        title: "Tu cuenta ha sido borrada.",
+        description: "¡Vuelve cuando quieras!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      navigate("/");
+    } catch (error) {
+      console.error("Error al eliminar usuario:", error);
+    }
+  };
+
 
 
 

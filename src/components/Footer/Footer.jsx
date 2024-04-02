@@ -29,8 +29,8 @@ const Footer = () => {
       backgroundColor={"#308c67"}
       color={"white"}
       alignItems={"center"}
-      justifyContent={"space-between"} // Alinear elementos a la derecha y a la izquierda
-      flexWrap={"wrap"} // Permitir que los elementos se envuelvan en caso de pantalla pequeña
+      justifyContent={"space-between"}
+      flexWrap={"wrap"}
     >
       <Flex alignItems="center">
         {ICONS.map(({ component, link, id }) => (
@@ -45,11 +45,11 @@ const Footer = () => {
       <Flex alignItems="center">
         <CustomLink to="/sobrenosotros">
           <Text
-          marginRight={"20px"}
+            marginRight={"20px"}
             alignItems={"flex-end"}
             fontSize={"24px"}
             fontWeight={"400"}
-            textAlign={{ base: "center", md: "right" }} 
+            textAlign={{ base: "center", md: "right" }}
           >
             Sobre Nosotr@s/Contacto
           </Text>

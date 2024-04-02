@@ -15,7 +15,7 @@ const NotFoundPage = () => {
       <Text fontWeight={"bold"} fontSize={"52px"}>
         Ups, parece que la página que buscas no existe :(
       </Text>
-          <img src={NotFoundImage} width={"30%"} height={"30%"} paddingTop={"100px"}></img>
+      <img src={NotFoundImage} width={"30%"} height={"30%"} paddingTop={"100px"}></img>
     </Flex>
   )
 }

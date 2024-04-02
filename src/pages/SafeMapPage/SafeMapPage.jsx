@@ -1,14 +1,13 @@
 import React from 'react';
 import SafeMapTitle from "../../components/SafeMap/SafeMapTitle.png";
 import { Text, Box, Flex } from '@chakra-ui/react';
-import Formulario from '../../components/SafeMap/Form/SafeMapForm';
 import MyMap from '../../components/SafeMap/SafeMap';
 
 const SafeMapPage = () => {
   return (
     <Flex direction="column" alignItems="flex-start" minHeight="1000px" margin="0 auto">
       <Flex width="100%" justifyContent="center" >
-        <img src={SafeMapTitle} alt="SafeMap Title"  style={{ width: '70%', marginTop:'30px'  }} />
+        <img src={SafeMapTitle} alt="SafeMap Title" style={{ width: '70%', marginTop: '30px' }} />
       </Flex>
       <Text
         width="100%"
@@ -34,8 +33,8 @@ const SafeMapPage = () => {
 
 export default SafeMapPage;
 
-   
 
-         
-    
+
+
+
 

@@ -10,13 +10,13 @@ const WarningsList = ({ warnings }) => {
           {warnings.map((warning, index) => (
             <li key={index}>
               <p>{warning.input}</p>
-              <p>Coordenadas: 
-              <Link 
-  to={`/safemap?lat=${warning.location.coordinates[1]}&lng=${warning.location.coordinates[0]}`} 
-  style={{ color: 'green', textDecoration: 'underline' }}
->
-  {warning.location.coordinates.join('-')}
-</Link>
+              <p>Coordenadas:
+                <Link
+                  to={`/safemap?lat=${warning.location.coordinates[1]}&lng=${warning.location.coordinates[0]}`}
+                  style={{ color: 'green', textDecoration: 'underline' }}
+                >
+                  {warning.location.coordinates.join('-')}
+                </Link>
               </p>
             </li>
           ))}

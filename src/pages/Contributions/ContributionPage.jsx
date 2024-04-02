@@ -1,9 +1,8 @@
 import React from 'react'
 import icono from "../../utils/icono.jpg"
-import { Flex } from '@chakra-ui/react'
-import { Image , Text , Box } from '@chakra-ui/react'
+import { Image, Text, Box, Flex } from '@chakra-ui/react'
 import CustomLink from '../../components/CustomLink/CustomLink'
-import { Link  } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ContributionsKittie from "./ContributionsKittie/ContributionsKittie.png"
 import ContributionsComponent from '../../components/Contributions/Contributions'
 

@@ -23,7 +23,8 @@ const LoginPage = () => {
   return (
     <FormLoginLayout>
       <CustomForm
-        marginBottom={{ base: "20px", md: "10px" }} 
+        marginBottom={{ base: "20px", md: "10px" }}
+        submitButtonLabel={"Inicia sesión"}
         title={"Inicia Sesión"}
         onChange={onChange}
         onSubmit={onSubmit}

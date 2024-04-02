@@ -11,7 +11,6 @@ const CustomForm = ({
   onSubmit,
   options,
   submitButtonLabel,
-  
   ...props
 }) => {
   return (
@@ -34,13 +33,13 @@ const CustomForm = ({
                 onChange={onChange}
                 key={option}
                 placeholder={(option)}
-                 onSubmit={onSubmit}
+                onSubmit={onSubmit}
               />
             )
           })}
-          <SubmitButton/>
+          <SubmitButton label={submitButtonLabel} />
         </Flex>
-        
+
       </form>
     </Flex>
   )
